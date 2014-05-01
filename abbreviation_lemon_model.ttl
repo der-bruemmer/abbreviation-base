@@ -1,0 +1,34 @@
+@prefix : <http://www.example.org/lexicon> .
+@prefix lemon: <http://www.monnetproject.eu/lemon#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+:myLexicon a lemon:Lexicon ; 
+   lemon:language "en" ;
+   lemon:entry :AA_Entry .
+   
+:AA_Entry a lemon:LexicalEntry ;
+   lemon:form [ lemon:writtenRep "A.A."@en ] ;
+   lemon:sense1 [ 
+	lemon:reference <http://dbpedia.org/resource/Michel_van_der_Aa> ;
+	lemon:definition [
+	lemon:value "Michel van der Aa"@en
+	] 
+ ] ;
+   lemon:sense2 [ 
+	lemon:reference <http://dbpedia.org/resource/NZR_AA_class> ;
+	lemon:definition [
+	lemon:value "NZR AA class"@en
+	] 
+ ] ;
+   lemon:sense3 [ 
+	lemon:reference <http://dbpedia.org/resource/AA_amyloidosis> ;
+	lemon:definition [
+	lemon:value "AA amyloidosis"@en
+	] 
+ ] ;
+   lemon:sense4 [ 
+	lemon:reference <http://dbpedia.org/resource/Amalgamated_Association_of_Iron_and_Steel_Workers> ;
+	lemon:definition [
+	lemon:value "Amalgamated Association of Iron and Steel Workers"@en
+	] 
+ ] .  
