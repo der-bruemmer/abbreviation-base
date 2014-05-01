@@ -1,3 +1,5 @@
+#lemon model for abbreviation in turtle
+
 @prefix : <http://www.example.org/lexicon> .
 @prefix lemon: <http://www.monnetproject.eu/lemon#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
