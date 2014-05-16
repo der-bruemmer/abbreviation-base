@@ -1,8 +1,0 @@
-language: fr
-1. redirects_fr.ttl.bz2 took 795.32005142
-2. instance_types_fr.ttl.bz2 took 1141.12927794
-3. interlanguage_links_fr.ttl.bz2 took 998.626237869
-4. interlanguage_links_chapters_fr.ttl.bz2 took 2246.14876699
-5. labels_fr.ttl.bz2 took 823.77730608
-6. category_labels_fr.ttl.bz2 took 96.4008698463
-7. disambiguations_fr.ttl.bz2 took 136.127120972
