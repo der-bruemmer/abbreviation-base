@@ -11,7 +11,7 @@
 
 #----------------Text file format----------------------
 #abbreviation	definition	label	reference	sameAs(list format)
-# P.S. type and category is not yet fetched completely so they have been omitted
+# P.S. category is not yet fetched completely so they have been omitted
 
 import sys, getopt, os, collections 
 from SPARQLWrapper import SPARQLWrapper, JSON
