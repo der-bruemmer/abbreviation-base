@@ -38,18 +38,18 @@ def getDisambiguations(abbrev, uri):
             results_sameAs = sparql.query().convert()
   
             #fetch type for each disamb (but ignored for now)
-            """query_type = 'select distinct ?type where {<'+result["o"]["value"]+'> rdf:type ?type. FILTER (REGEX(?type, "ontology") || REGEX(?type, "schema"))}' 
+            query_type = 'select distinct ?type where {<'+result["o"]["value"]+'> rdf:type ?type. FILTER (REGEX(?type, "ontology") || REGEX(?type, "schema"))}' 
             sparql.setQuery(query_type)
             sparql.setReturnFormat(JSON)
             results_type = sparql.query().convert()
-            list_type=[]"""
+            list_type=[]
 
             list_sameAs=[]    #stores sameAs temporarily for each disambiguation
             for result_sameAs in results_sameAs["results"]["bindings"]:
                 list_sameAs.append(result_sameAs["lang"]["value"])      #store the query result in a list
 
-            """for result_type in results_type["results"]["bindings"]:
-                list_type.append(result_type["type"]["value"])      #store the query result in a list"""
+            for result_type in results_type["results"]["bindings"]:
+                list_type.append(result_type["type"]["value"])      #store the query result in a list
 
             #dictionary where key is abbreviation+count and value is label, reference link and sameAs fetched from query
             abbrevs[abbrev+" "+str(count)] = [result["label"]["value"],result["o"]["value"],list_sameAs]     #list_type]
@@ -89,8 +89,18 @@ def getOriginalLanguageData(abbrev, uri):
             list_sameAs=[]
             for result_sameAs in results_sameAs["results"]["bindings"]:
                 list_sameAs.append(result_sameAs["lang"]["value"])      #store the query result in a list
+            
+            query_type = 'select distinct ?type where {<'+uri+'> rdf:type ?type. FILTER (REGEX(?type, "ontology") || REGEX(?type, "schema"))}' 
+            sparql.setQuery(query_type)
+            sparql.setReturnFormat(JSON)
+            results_type = sparql.query().convert()
+            list_type=[]
+
+            for result_type in results_type["results"]["bindings"]:
+                list_type.append(result_type["type"]["value"])      #store the query result in a list
+
             #dictionary where key is abbreviation+count and value is label, reference link and sameAs fetched from query
-            data = [result["label"]["value"],uri,list_sameAs]
+            data = [result["label"]["value"],uri,list_sameAs,list_type]
         return data
     except ValueError:
         data = [uri[uri.rfind("/")+1:-1].replace("_"," "),uri,""]
@@ -161,8 +171,13 @@ def main(argv):
         	sameAs_string+='>'
         v[2]=v[2].replace("http","<http")
         v[2]+='>'
-        print(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\n")
-        output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\n")
+        rdfType_string = ','.join(v[4])  #converts rdfType from list to string format
+        rdfType_string=rdfType_string.replace("http","<http")
+        rdfType_string=rdfType_string.replace(",",">,")
+        if len(rdfType_string)>0:
+                rdfType_string+='>'
+        print(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\n")
+        output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\n")
     output.close()
 
 if __name__ == "__main__":
