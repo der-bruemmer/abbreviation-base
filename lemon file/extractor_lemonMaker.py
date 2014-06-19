@@ -1,6 +1,5 @@
 #----input language in command line------
 
-
 #----result["name"]["value"] ==> lemon:value "Michel van der Aa"@en
 #----result["label"]["value"] ==> rdfs:label "Michel van der Aa"
 #----result["o"]["value"] ==> lemon:reference <http://dbpedia.org/resource/Michel_van_der_Aa>
