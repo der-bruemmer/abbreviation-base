@@ -22,6 +22,7 @@
 	lemon:definition [
 		lemon:value "Anno Domini"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Place>,<http://dbpedia.org/ontology/PopulatedPlace>,<http://dbpedia.org/ontology/Settlement>,<http://schema.org/Place> ;
 	rdfs:label "Anno Domini" ;
 	owl:sameAs <http://el.dbpedia.org/resource/Μ.Χ.>,<http://it.dbpedia.org/resource/Anno_Domini>,<http://pt.dbpedia.org/resource/Anno_Domini>,<http://cs.dbpedia.org/resource/Anno_Domini>,<http://de.dbpedia.org/resource/Anno_Domini>,<http://fr.dbpedia.org/resource/Anno_Domini>,<http://ru.dbpedia.org/resource/От_Рождества_Христова>,<http://es.dbpedia.org/resource/Anno_Domini>,<http://ja.dbpedia.org/resource/西暦>,<http://pl.dbpedia.org/resource/Naszej_ery>,<http://ko.dbpedia.org/resource/서력기원>,<http://nl.dbpedia.org/resource/Anno_Domini>,<http://eu.dbpedia.org/resource/Anno_Domini>,<http://zh.dbpedia.org/resource/西元>,<http://ar.dbpedia.org/resource/أنو_دوميني>,<http://az.dbpedia.org/resource/Miladi_tarix>,<http://be.dbpedia.org/resource/Ад_Нараджэння_Хрыстова>,<http://bg.dbpedia.org/resource/След_Христа>,<http://ca.dbpedia.org/resource/Anno_Domini>,<http://cy.dbpedia.org/resource/Oed_Crist>,<http://da.dbpedia.org/resource/Anno_Domini>,<http://eo.dbpedia.org/resource/A._D.>,<http://et.dbpedia.org/resource/PKr>,<http://fa.dbpedia.org/resource/پس_از_میلاد>,<http://fi.dbpedia.org/resource/Jälkeen_Kristuksen>,<http://ga.dbpedia.org/resource/Anno_Domini>,<http://gd.dbpedia.org/resource/AC>,<http://gl.dbpedia.org/resource/AEC>,<http://he.dbpedia.org/resource/ספירת_הנוצרים>,<http://hi.dbpedia.org/resource/ईसवी>,<http://hy.dbpedia.org/resource/Քրիստոսից_հետո>,<http://id.dbpedia.org/resource/Anno_Domini>,<http://is.dbpedia.org/resource/Anno_Domini>,<http://ku.dbpedia.org/resource/Piştî_zayînê>,<http://la.dbpedia.org/resource/Anno_Domini>,<http://mk.dbpedia.org/resource/Наша_ера>,<http://ml.dbpedia.org/resource/ക്രിസ്ത്വബ്ദം>,<http://ms.dbpedia.org/resource/Tahun_Masihi>,<http://my.dbpedia.org/resource/အေဒီ>,<http://nn.dbpedia.org/resource/Kristi_fødsel>,<http://no.dbpedia.org/resource/Kristi_fødsel>,<http://oc.dbpedia.org/resource/Anno_Domini>,<http://ro.dbpedia.org/resource/E.n.>,<http://sco.dbpedia.org/resource/AD>,<http://sh.dbpedia.org/resource/Anno_Domini>,<http://simple.dbpedia.org/resource/Anno_Domini>,<http://sk.dbpedia.org/resource/Po_Kristovi>,<http://sl.dbpedia.org/resource/Anno_Domini>,<http://sv.dbpedia.org/resource/Efter_Kristus>,<http://sw.dbpedia.org/resource/Baada_ya_Kristo>,<http://ta.dbpedia.org/resource/அனோ_டொமினி>,<http://th.dbpedia.org/resource/คริสต์ศักราช>,<http://tr.dbpedia.org/resource/Anno_Domini>,<http://uk.dbpedia.org/resource/Anno_Domini>,<http://vi.dbpedia.org/resource/Công_Nguyên>,<http://mt.dbpedia.org/resource/WK>,<http://zh_yue.dbpedia.org/resource/公元> ;
 	lemon:reference <http://dbpedia.org/resource/Anno_Domini> ;
@@ -40,6 +41,7 @@
 	lemon:definition [
 		lemon:value "Ai (Bible)"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Event>,<http://dbpedia.org/ontology/MilitaryConflict>,<http://schema.org/Event> ;
 	rdfs:label "Ai (Bible)" ;
 	owl:sameAs <http://fr.dbpedia.org/resource/Aï_(Bible)>,<http://pl.dbpedia.org/resource/Aj_(miasto_biblijne)>,<http://pt.dbpedia.org/resource/Ai_(Bíblia)>,<http://de.dbpedia.org/resource/Ai_(Historischer_Stadtstaat)>,<http://es.dbpedia.org/resource/Ai_(Biblia)>,<http://ja.dbpedia.org/resource/アイ_(聖書)>,<http://nl.dbpedia.org/resource/Ai_(stad)>,<http://fa.dbpedia.org/resource/عای>,<http://he.dbpedia.org/resource/העי>,<http://id.dbpedia.org/resource/Ai_(tempat)>,<http://ta.dbpedia.org/resource/ஆயி> ;
 	lemon:reference <http://dbpedia.org/resource/Ai_(Bible)> ;
@@ -49,6 +51,7 @@
 	lemon:definition [
 		lemon:value "Ai (poet)"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Artist>,<http://dbpedia.org/ontology/Writer>,<http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Person>,<http://schema.org/Person> ;
 	rdfs:label "Ai (poet)" ;
 	owl:sameAs <http://pl.dbpedia.org/resource/Ai_(poetka)>,<http://de.dbpedia.org/resource/Ai_(Dichterin)>,<http://fi.dbpedia.org/resource/Ai_(runoilija)> ;
 	lemon:reference <http://dbpedia.org/resource/Ai_(poet)> ;
@@ -58,6 +61,7 @@
 	lemon:definition [
 		lemon:value "Ai Weiwei"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Artist>,<http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Person>,<http://schema.org/Person> ;
 	rdfs:label "Ai Weiwei" ;
 	owl:sameAs <http://it.dbpedia.org/resource/Ai_Weiwei>,<http://ja.dbpedia.org/resource/艾未未>,<http://pt.dbpedia.org/resource/Ai_Weiwei>,<http://es.dbpedia.org/resource/Ai_Weiwei>,<http://ko.dbpedia.org/resource/아이웨이웨이>,<http://cs.dbpedia.org/resource/Aj_Wej-wej>,<http://pl.dbpedia.org/resource/Ai_Weiwei>,<http://de.dbpedia.org/resource/Ai_Weiwei>,<http://fr.dbpedia.org/resource/Ai_Weiwei>,<http://ru.dbpedia.org/resource/Ай_Вэйвэй>,<http://nl.dbpedia.org/resource/Ai_Weiwei>,<http://zh.dbpedia.org/resource/艾未未>,<http://ar.dbpedia.org/resource/آي_ويوي>,<http://bcl.dbpedia.org/resource/Ai_Weiwei>,<http://ca.dbpedia.org/resource/Ai_Weiwei>,<http://et.dbpedia.org/resource/Ai_Weiwei>,<http://fa.dbpedia.org/resource/آی_وی‌وی>,<http://fi.dbpedia.org/resource/Ai_Weiwei>,<http://he.dbpedia.org/resource/איי_וייוויי>,<http://hy.dbpedia.org/resource/Այ_Վեյվեյ>,<http://io.dbpedia.org/resource/Ai_Weiwei>,<http://lb.dbpedia.org/resource/Ai_Weiwei>,<http://lv.dbpedia.org/resource/Ai_Veivei>,<http://ml.dbpedia.org/resource/ഐ_വേയ്‌വേയ്>,<http://no.dbpedia.org/resource/Ai_Weiwei>,<http://ro.dbpedia.org/resource/Ai_Weiwei>,<http://sr.dbpedia.org/resource/Ај_Веј-веј>,<http://sv.dbpedia.org/resource/Ai_Weiwei>,<http://ta.dbpedia.org/resource/ஐ_வெய்வே>,<http://th.dbpedia.org/resource/ไอ้_เว่ยเว่ย>,<http://tr.dbpedia.org/resource/Ai_weiwei>,<http://vi.dbpedia.org/resource/Ngải_Vị_Vị>,<http://zh_yue.dbpedia.org/resource/艾未未> ;
 	lemon:reference <http://dbpedia.org/resource/Ai_Weiwei> ;
@@ -67,6 +71,7 @@
 	lemon:definition [
 		lemon:value "Aromatase inhibitor"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Artist>,<http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Person>,<http://schema.org/Person> ;
 	rdfs:label "Aromatase inhibitor" ;
 	owl:sameAs <http://pl.dbpedia.org/resource/Inhibitory_aromatazy>,<http://fr.dbpedia.org/resource/Inhibiteur_de_l'aromatase>,<http://pt.dbpedia.org/resource/Inibidor_da_aromatase>,<http://es.dbpedia.org/resource/Inhibidor_de_aromatasa>,<http://fi.dbpedia.org/resource/Aromataasi-inhibiittorit>,<http://sl.dbpedia.org/resource/Zaviralci_aromataz> ;
 	lemon:reference <http://dbpedia.org/resource/Aromatase_inhibitor> ;
@@ -76,6 +81,7 @@
 	lemon:definition [
 		lemon:value "Amelogenesis imperfecta"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Disease> ;
 	rdfs:label "Amelogenesis imperfecta" ;
 	owl:sameAs <http://el.dbpedia.org/resource/Ατελής_αδαμαντινογένεση>,<http://pl.dbpedia.org/resource/Amelogenesis_imperfecta>,<http://es.dbpedia.org/resource/Amelogenesis_imperfecta>,<http://de.dbpedia.org/resource/Amelogenesis_imperfecta>,<http://pt.dbpedia.org/resource/Amelogênese_imperfeita>,<http://hu.dbpedia.org/resource/Amelogenesis_imperfecta> ;
 	lemon:reference <http://dbpedia.org/resource/Amelogenesis_imperfecta> ;
@@ -85,6 +91,7 @@
 	lemon:definition [
 		lemon:value "Love River"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/BodyOfWater>,<http://dbpedia.org/ontology/NaturalPlace>,<http://dbpedia.org/ontology/Place>,<http://dbpedia.org/ontology/River>,<http://dbpedia.org/ontology/Stream>,<http://schema.org/BodyOfWater>,<http://schema.org/Place>,<http://schema.org/RiverBodyOfWater> ;
 	rdfs:label "Love River" ;
 	owl:sameAs <http://ja.dbpedia.org/resource/愛河>,<http://de.dbpedia.org/resource/Liebes-Fluss>,<http://zh.dbpedia.org/resource/愛河>,<http://zh_min_nan.dbpedia.org/resource/Ài-hô> ;
 	lemon:reference <http://dbpedia.org/resource/Love_River> ;
@@ -94,6 +101,7 @@
 	lemon:definition [
 		lemon:value "Aortic insufficiency"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Disease> ;
 	rdfs:label "Aortic insufficiency" ;
 	owl:sameAs <http://de.dbpedia.org/resource/Aortenklappeninsuffizienz>,<http://es.dbpedia.org/resource/Insuficiencia_aórtica>,<http://fr.dbpedia.org/resource/Insuffisance_aortique>,<http://it.dbpedia.org/resource/Insufficienza_aortica>,<http://pl.dbpedia.org/resource/Niedomykalność_zastawki_aortalnej>,<http://pt.dbpedia.org/resource/Insuficiência_aórtica>,<http://nl.dbpedia.org/resource/Aorta-insufficiëntie>,<http://ar.dbpedia.org/resource/قصور_الأبهري>,<http://az.dbpedia.org/resource/Aortal_çatışmazlıq>,<http://ca.dbpedia.org/resource/Insuficiència_aòrtica>,<http://he.dbpedia.org/resource/אי-ספיקת_מסתם_אבי_העורקים>,<http://sv.dbpedia.org/resource/Aortainsufficiens>,<http://uk.dbpedia.org/resource/Аортальна_недостатність> ;
 	lemon:reference <http://dbpedia.org/resource/Aortic_insufficiency> ;
@@ -103,6 +111,7 @@
 	lemon:definition [
 		lemon:value "The American Interest"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Magazine>,<http://dbpedia.org/ontology/Work>,<http://dbpedia.org/ontology/WrittenWork>,<http://dbpedia.org/ontology/PeriodicalLiterature>,<http://schema.org/CreativeWork> ;
 	rdfs:label "The American Interest" ;
 	owl:sameAs <http://sv.dbpedia.org/resource/The_American_Interest> ;
 	lemon:reference <http://dbpedia.org/resource/The_American_Interest> ;
@@ -112,6 +121,7 @@
 	lemon:definition [
 		lemon:value "Aikanaka (mythology)"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Magazine>,<http://dbpedia.org/ontology/Work>,<http://dbpedia.org/ontology/WrittenWork>,<http://dbpedia.org/ontology/PeriodicalLiterature>,<http://schema.org/CreativeWork> ;
 	rdfs:label "Aikanaka (mythology)" ;
 	owl:sameAs <http://sv.dbpedia.org/resource/The_American_Interest> ;
 	lemon:reference <http://dbpedia.org/resource/Aikanaka_(mythology)> ;
@@ -121,6 +131,7 @@
 	lemon:definition [
 		lemon:value "Appreciative inquiry"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Magazine>,<http://dbpedia.org/ontology/Work>,<http://dbpedia.org/ontology/WrittenWork>,<http://dbpedia.org/ontology/PeriodicalLiterature>,<http://schema.org/CreativeWork> ;
 	rdfs:label "Appreciative inquiry" ;
 	owl:sameAs <http://de.dbpedia.org/resource/Appreciative_Inquiry>,<http://es.dbpedia.org/resource/Indagación_apreciativa>,<http://fr.dbpedia.org/resource/Interrogation_appréciative> ;
 	lemon:reference <http://dbpedia.org/resource/Appreciative_inquiry> ;
@@ -130,6 +141,7 @@
 	lemon:definition [
 		lemon:value "Emperor Ai of Han"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/BritishRoyalty>,<http://dbpedia.org/ontology/Person>,<http://dbpedia.org/ontology/Royalty>,<http://schema.org/Person> ;
 	rdfs:label "Emperor Ai of Han" ;
 	owl:sameAs <http://ja.dbpedia.org/resource/哀帝_(漢)>,<http://pt.dbpedia.org/resource/Aidi_de_Han>,<http://ko.dbpedia.org/resource/전한_애제>,<http://it.dbpedia.org/resource/Ai_Di>,<http://de.dbpedia.org/resource/Han_Aidi>,<http://fr.dbpedia.org/resource/Han_Aidi>,<http://pl.dbpedia.org/resource/Han_Aidi>,<http://zh.dbpedia.org/resource/汉哀帝>,<http://hr.dbpedia.org/resource/Ai_Di_(kineski_car)>,<http://id.dbpedia.org/resource/Kaisar_Ai_dari_Han>,<http://no.dbpedia.org/resource/Han_Aidi>,<http://sh.dbpedia.org/resource/Car_Ai_od_Hana>,<http://simple.dbpedia.org/resource/Emperor_Ai_of_Han>,<http://th.dbpedia.org/resource/จักรพรรดิฮั่นไอ>,<http://uk.dbpedia.org/resource/Лю_Сінь_(Хань)>,<http://vi.dbpedia.org/resource/Hán_Ai_Đế>,<http://zh_classical.dbpedia.org/resource/漢孝哀皇帝> ;
 	lemon:reference <http://dbpedia.org/resource/Emperor_Ai_of_Han> ;
@@ -139,6 +151,7 @@
 	lemon:definition [
 		lemon:value ".ai"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/BritishRoyalty>,<http://dbpedia.org/ontology/Person>,<http://dbpedia.org/ontology/Royalty>,<http://schema.org/Person> ;
 	rdfs:label ".ai" ;
 	owl:sameAs <http://it.dbpedia.org/resource/.ai>,<http://ja.dbpedia.org/resource/.ai>,<http://ko.dbpedia.org/resource/.ai>,<http://pt.dbpedia.org/resource/.ai>,<http://cs.dbpedia.org/resource/.ai>,<http://el.dbpedia.org/resource/.ai>,<http://pl.dbpedia.org/resource/.ai>,<http://es.dbpedia.org/resource/.ai>,<http://ru.dbpedia.org/resource/.ai>,<http://de.dbpedia.org/resource/.ai>,<http://fr.dbpedia.org/resource/.ai>,<http://nl.dbpedia.org/resource/.ai>,<http://eu.dbpedia.org/resource/.ai>,<http://zh.dbpedia.org/resource/.ai>,<http://af.dbpedia.org/resource/.ai>,<http://ar.dbpedia.org/resource/.ai>,<http://arz.dbpedia.org/resource/.ai>,<http://ast.dbpedia.org/resource/.ai>,<http://az.dbpedia.org/resource/.ai>,<http://be.dbpedia.org/resource/.ai>,<http://bg.dbpedia.org/resource/.ai>,<http://bn.dbpedia.org/resource/.এআই>,<http://bs.dbpedia.org/resource/.ai>,<http://ca.dbpedia.org/resource/.ai>,<http://cy.dbpedia.org/resource/.ai>,<http://da.dbpedia.org/resource/.ai>,<http://eo.dbpedia.org/resource/.ai>,<http://et.dbpedia.org/resource/.ai>,<http://fa.dbpedia.org/resource/.ai>,<http://fi.dbpedia.org/resource/.ai>,<http://gl.dbpedia.org/resource/.ai>,<http://hr.dbpedia.org/resource/.ai>,<http://hu.dbpedia.org/resource/.ai>,<http://hy.dbpedia.org/resource/.ai>,<http://id.dbpedia.org/resource/.ai>,<http://is.dbpedia.org/resource/.ai>,<http://ka.dbpedia.org/resource/.ai>,<http://lb.dbpedia.org/resource/.ai>,<http://lv.dbpedia.org/resource/.ai>,<http://mk.dbpedia.org/resource/.ai>,<http://ms.dbpedia.org/resource/.ai>,<http://mzn.dbpedia.org/resource/.ai>,<http://nds.dbpedia.org/resource/.ai>,<http://no.dbpedia.org/resource/.ai>,<http://oc.dbpedia.org/resource/.ai>,<http://ro.dbpedia.org/resource/.ai>,<http://sh.dbpedia.org/resource/.ai>,<http://sk.dbpedia.org/resource/.ai>,<http://sq.dbpedia.org/resource/.ai>,<http://sr.dbpedia.org/resource/.ai>,<http://tg.dbpedia.org/resource/.ai>,<http://th.dbpedia.org/resource/.ai>,<http://tl.dbpedia.org/resource/.ai>,<http://tr.dbpedia.org/resource/.ai>,<http://tt.dbpedia.org/resource/.ai>,<http://uk.dbpedia.org/resource/.ai>,<http://uz.dbpedia.org/resource/.ai>,<http://vi.dbpedia.org/resource/.ai>,<http://war.dbpedia.org/resource/.ai>,<http://yo.dbpedia.org/resource/.ai>,<http://cv.dbpedia.org/resource/.ai>,<http://su.dbpedia.org/resource/.ai>,<http://be_x_old.dbpedia.org/resource/.ai>,<http://ce.dbpedia.org/resource/.ai>,<http://crh.dbpedia.org/resource/.ai>,<http://diq.dbpedia.org/resource/.ai>,<http://fiu_vro.dbpedia.org/resource/.ai>,<http://krc.dbpedia.org/resource/.ai>,<http://sah.dbpedia.org/resource/.ai>,<http://tk.dbpedia.org/resource/.ai>,<http://xal.dbpedia.org/resource/.ai>,<http://zh_yue.dbpedia.org/resource/.ai> ;
 	lemon:reference <http://dbpedia.org/resource/.ai> ;
@@ -148,6 +161,7 @@
 	lemon:definition [
 		lemon:value "Adobe Illustrator"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Software>,<http://dbpedia.org/ontology/Work>,<http://schema.org/CreativeWork> ;
 	rdfs:label "Adobe Illustrator" ;
 	owl:sameAs <http://cs.dbpedia.org/resource/Adobe_Illustrator>,<http://pl.dbpedia.org/resource/Adobe_Illustrator>,<http://de.dbpedia.org/resource/Adobe_Illustrator>,<http://fr.dbpedia.org/resource/Adobe_Illustrator>,<http://ko.dbpedia.org/resource/어도비_일러스트레이터>,<http://it.dbpedia.org/resource/Adobe_Illustrator>,<http://ja.dbpedia.org/resource/Adobe_Illustrator>,<http://pt.dbpedia.org/resource/Adobe_Illustrator>,<http://es.dbpedia.org/resource/Adobe_Illustrator>,<http://ru.dbpedia.org/resource/Adobe_Illustrator>,<http://nl.dbpedia.org/resource/Adobe_Illustrator>,<http://zh.dbpedia.org/resource/Adobe_Illustrator>,<http://ar.dbpedia.org/resource/أدوبي_إليستريتور>,<http://bg.dbpedia.org/resource/Adobe_Illustrator>,<http://ca.dbpedia.org/resource/Adobe_Illustrator>,<http://da.dbpedia.org/resource/Adobe_Illustrator>,<http://et.dbpedia.org/resource/Adobe_Illustrator>,<http://fa.dbpedia.org/resource/ادوبی_ایلاستریتر>,<http://fi.dbpedia.org/resource/Adobe_Illustrator>,<http://he.dbpedia.org/resource/אדובי_אילוסטרייטור>,<http://hi.dbpedia.org/resource/अडॉबी_इलस्ट्रेटर>,<http://hr.dbpedia.org/resource/Adobe_Illustrator>,<http://id.dbpedia.org/resource/Adobe_Illustrator>,<http://jv.dbpedia.org/resource/Adobe_Illustrator>,<http://lb.dbpedia.org/resource/Adobe_Illustrator>,<http://mr.dbpedia.org/resource/अ‍ॅडोबे_इलस्ट्रेटर>,<http://no.dbpedia.org/resource/Adobe_Illustrator>,<http://ro.dbpedia.org/resource/Adobe_Illustrator>,<http://simple.dbpedia.org/resource/Adobe_Illustrator>,<http://sl.dbpedia.org/resource/Adobe_Illustrator>,<http://sv.dbpedia.org/resource/Adobe_Illustrator>,<http://th.dbpedia.org/resource/อะโดบี_อิลลัสเตรเตอร์>,<http://tr.dbpedia.org/resource/Adobe_Illustrator>,<http://uk.dbpedia.org/resource/Adobe_Illustrator> ;
 	lemon:reference <http://dbpedia.org/resource/Adobe_Illustrator> ;
@@ -157,6 +171,7 @@
 	lemon:definition [
 		lemon:value "Amnesty International"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Non-ProfitOrganisation>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "Amnesty International" ;
 	owl:sameAs <http://cs.dbpedia.org/resource/Amnesty_International>,<http://el.dbpedia.org/resource/Διεθνής_Αμνηστία>,<http://es.dbpedia.org/resource/Amnistía_Internacional>,<http://ko.dbpedia.org/resource/국제사면위원회>,<http://pl.dbpedia.org/resource/Amnesty_International>,<http://it.dbpedia.org/resource/Amnesty_International>,<http://ja.dbpedia.org/resource/アムネスティ・インターナショナル>,<http://pt.dbpedia.org/resource/Anistia_Internacional>,<http://ru.dbpedia.org/resource/Международная_амнистия>,<http://de.dbpedia.org/resource/Amnesty_International>,<http://fr.dbpedia.org/resource/Amnesty_International>,<http://nl.dbpedia.org/resource/Amnesty_International>,<http://eu.dbpedia.org/resource/Amnesty_International>,<http://zh.dbpedia.org/resource/國際特赦組織>,<http://af.dbpedia.org/resource/Amnestie_Internasionaal>,<http://ar.dbpedia.org/resource/منظمة_العفو_الدولية>,<http://az.dbpedia.org/resource/Beynəlxalq_Əfv>,<http://be.dbpedia.org/resource/Міжнародная_Амністыя>,<http://bg.dbpedia.org/resource/Амнести_Интернешънъл>,<http://bn.dbpedia.org/resource/অ্যামনেস্টি_ইন্টারন্যাশনাল>,<http://bs.dbpedia.org/resource/Amnesty_International>,<http://ca.dbpedia.org/resource/Amnistia_Internacional>,<http://cy.dbpedia.org/resource/Amnest_Rhyngwladol>,<http://da.dbpedia.org/resource/Amnesty_International>,<http://eo.dbpedia.org/resource/Amnestio_Internacia>,<http://et.dbpedia.org/resource/Amnesty_International>,<http://fa.dbpedia.org/resource/عفو_بین‌الملل>,<http://fi.dbpedia.org/resource/Amnesty_International>,<http://fo.dbpedia.org/resource/Amnesty_International>,<http://fy.dbpedia.org/resource/Amnesty_International>,<http://gl.dbpedia.org/resource/Amnistía_Internacional>,<http://he.dbpedia.org/resource/אמנסטי_אינטרנשיונל>,<http://hi.dbpedia.org/resource/एमनेस्टी_इण्टरनेशनल>,<http://hr.dbpedia.org/resource/Amnesty_International>,<http://hu.dbpedia.org/resource/Amnesty_International>,<http://id.dbpedia.org/resource/Amnesty_International>,<http://io.dbpedia.org/resource/Internaciona_Amnestio>,<http://is.dbpedia.org/resource/Amnesty_International>,<http://ka.dbpedia.org/resource/საერთაშორისო_ამნისტია>,<http://kn.dbpedia.org/resource/ಅಮ್ನೆಸ್ಟಿ_ಇಂಟರ್_ನ್ಯಾಶನಲ್_(ರಾಜದ್ರೋಹದ_ಕ್ಷಮಾಪಣೆಯ_ಅಂತಾರಾಷ್ಟ್ರೀಯ_ಸಂಸ್ಥೆ)>,<http://ku.dbpedia.org/resource/Rêxistina_Efûyê_ya_Navneteweyî>,<http://la.dbpedia.org/resource/Amnestia_Internationalis>,<http://lt.dbpedia.org/resource/Amnesty_International>,<http://lv.dbpedia.org/resource/Amnesty_International>,<http://ml.dbpedia.org/resource/ആംനസ്റ്റി_ഇന്റർനാഷണൽ>,<http://ms.dbpedia.org/resource/Amnesty_International>,<http://my.dbpedia.org/resource/အပြည်ပြည်ဆိုင်ရာ_လွတ်ငြိမ်းချမ်းသာရေး_အဖွဲ့>,<http://nn.dbpedia.org/resource/Amnesty_International>,<http://no.dbpedia.org/resource/Amnesty_International>,<http://oc.dbpedia.org/resource/Amnistia_Internacionala>,<http://pms.dbpedia.org/resource/Amnesty_International>,<http://pnb.dbpedia.org/resource/ایمنیسٹی>,<http://ro.dbpedia.org/resource/Amnesty_International>,<http://sh.dbpedia.org/resource/Amnesty_International>,<http://simple.dbpedia.org/resource/Amnesty_International>,<http://sk.dbpedia.org/resource/Amnesty_International>,<http://sl.dbpedia.org/resource/Amnesty_International>,<http://sr.dbpedia.org/resource/Амнести_интернашонал>,<http://sv.dbpedia.org/resource/Amnesty_International>,<http://ta.dbpedia.org/resource/பன்னாட்டு_மன்னிப்பு_அவை>,<http://th.dbpedia.org/resource/องค์การนิรโทษกรรมสากล>,<http://tr.dbpedia.org/resource/Uluslararası_Af_Örgütü>,<http://tt.dbpedia.org/resource/Amnesty_International>,<http://uk.dbpedia.org/resource/Міжнародна_амністія>,<http://ur.dbpedia.org/resource/تنظیم_العفو_بین_الاقوامی>,<http://vi.dbpedia.org/resource/Ân_xá_Quốc_tế>,<http://yo.dbpedia.org/resource/Amnesty_International>,<http://be_x_old.dbpedia.org/resource/Міжнародная_амністыя>,<http://ckb.dbpedia.org/resource/لێبوردنی_نێونەتەوەیی>,<http://pa.dbpedia.org/resource/ਐਮਨੈਸਟੀ_ਇੰਟਰਨੈਸ਼ਨਲ> ;
 	lemon:reference <http://dbpedia.org/resource/Amnesty_International> ;
@@ -166,6 +181,7 @@
 	lemon:definition [
 		lemon:value "Artificial insemination"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Non-ProfitOrganisation>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "Artificial insemination" ;
 	owl:sameAs <http://es.dbpedia.org/resource/Inseminación_artificial>,<http://ru.dbpedia.org/resource/Искусственное_осеменение>,<http://ja.dbpedia.org/resource/人工授精>,<http://pl.dbpedia.org/resource/Sztuczne_unasiennianie>,<http://pt.dbpedia.org/resource/Inseminação_artificial>,<http://cs.dbpedia.org/resource/Inseminace>,<http://de.dbpedia.org/resource/Insemination>,<http://ko.dbpedia.org/resource/인공수정>,<http://fr.dbpedia.org/resource/Insémination_artificielle>,<http://it.dbpedia.org/resource/Fecondazione_assistita>,<http://nl.dbpedia.org/resource/Kunstmatige_inseminatie>,<http://eu.dbpedia.org/resource/Hazi-jartze>,<http://it.dbpedia.org/resource/Fecondazione_artificiale>,<http://zh.dbpedia.org/resource/人工授精>,<http://ar.dbpedia.org/resource/تلقيح_أصطناعي>,<http://ca.dbpedia.org/resource/Inseminació_artificial>,<http://da.dbpedia.org/resource/Kunstig_befrugtning>,<http://fi.dbpedia.org/resource/Keinosiemennys>,<http://fy.dbpedia.org/resource/Keunstmjittige_ynseminaasje>,<http://he.dbpedia.org/resource/הזרעה_מלאכותית>,<http://hi.dbpedia.org/resource/इंट्रा_यूटेराइन_इनसेमिनेशन>,<http://hr.dbpedia.org/resource/Inseminacija>,<http://hu.dbpedia.org/resource/Mesterséges_megtermékenyítés>,<http://id.dbpedia.org/resource/Inseminasi_buatan>,<http://is.dbpedia.org/resource/Tæknifrjóvgun>,<http://lt.dbpedia.org/resource/Dirbtinis_apvaisinimas>,<http://ms.dbpedia.org/resource/Permanian_beradas>,<http://no.dbpedia.org/resource/Kunstig_befruktning>,<http://scn.dbpedia.org/resource/Ficunnazzioni_artificiali>,<http://sh.dbpedia.org/resource/Inseminacija>,<http://simple.dbpedia.org/resource/Artificial_insemination>,<http://sl.dbpedia.org/resource/Umetna_oploditev>,<http://sr.dbpedia.org/resource/Инсеминација>,<http://sv.dbpedia.org/resource/Insemination>,<http://ta.dbpedia.org/resource/செயற்கை_விந்தூட்டல்>,<http://uk.dbpedia.org/resource/Штучне_осіменіння> ;
 	lemon:reference <http://dbpedia.org/resource/Artificial_insemination> ;
@@ -175,6 +191,7 @@
 	lemon:definition [
 		lemon:value "Artificial intelligence"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Non-ProfitOrganisation>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "Artificial intelligence" ;
 	owl:sameAs <http://cs.dbpedia.org/resource/Umělá_inteligence>,<http://es.dbpedia.org/resource/Inteligencia_artificial>,<http://pt.dbpedia.org/resource/Inteligência_artificial>,<http://ru.dbpedia.org/resource/Искусственный_интеллект>,<http://el.dbpedia.org/resource/Τεχνητή_νοημοσύνη>,<http://fr.dbpedia.org/resource/Intelligence_artificielle>,<http://pl.dbpedia.org/resource/Sztuczna_inteligencja>,<http://it.dbpedia.org/resource/Intelligenza_artificiale>,<http://ja.dbpedia.org/resource/人工知能>,<http://de.dbpedia.org/resource/Künstliche_Intelligenz>,<http://ko.dbpedia.org/resource/인공지능>,<http://nl.dbpedia.org/resource/Kunstmatige_intelligentie>,<http://eu.dbpedia.org/resource/Adimen_artifizial>,<http://zh.dbpedia.org/resource/人工智能>,<http://an.dbpedia.org/resource/Intelichencia_artificial>,<http://ar.dbpedia.org/resource/ذكاء_اصطناعي>,<http://arz.dbpedia.org/resource/ذكاء_صناعى>,<http://az.dbpedia.org/resource/Süni_intellekt>,<http://be.dbpedia.org/resource/Штучны_інтэлект>,<http://bg.dbpedia.org/resource/Изкуствен_интелект>,<http://bn.dbpedia.org/resource/কৃত্রিম_বুদ্ধিমত্তা>,<http://bs.dbpedia.org/resource/Vještačka_inteligencija>,<http://ca.dbpedia.org/resource/Intel·ligència_artificial>,<http://da.dbpedia.org/resource/Kunstig_intelligens>,<http://eo.dbpedia.org/resource/Artefarita_inteligenteco>,<http://et.dbpedia.org/resource/Tehisintellekt>,<http://fa.dbpedia.org/resource/هوش_مصنوعی>,<http://fi.dbpedia.org/resource/Tekoäly>,<http://gan.dbpedia.org/resource/人工智能>,<http://gl.dbpedia.org/resource/Intelixencia_artificial>,<http://he.dbpedia.org/resource/בינה_מלאכותית>,<http://hi.dbpedia.org/resource/कृत्रिम_बुद्धिमत्ता>,<http://hr.dbpedia.org/resource/Umjetna_inteligencija>,<http://hu.dbpedia.org/resource/Mesterséges_intelligencia>,<http://ia.dbpedia.org/resource/Intelligentia_artificial>,<http://id.dbpedia.org/resource/Kecerdasan_buatan>,<http://io.dbpedia.org/resource/Artifical_inteligenteso>,<http://is.dbpedia.org/resource/Gervigreind>,<http://jv.dbpedia.org/resource/Kacerdhasan_gawéyan>,<http://ka.dbpedia.org/resource/ხელოვნური_ინტელექტი>,<http://kk.dbpedia.org/resource/Жасанды_интеллект>,<http://kn.dbpedia.org/resource/ಕೃತಕ_ಬುದ್ಧಿಮತ್ತೆ>,<http://ky.dbpedia.org/resource/Жасалма_интеллект>,<http://la.dbpedia.org/resource/Intellegentia_artificialis>,<http://lt.dbpedia.org/resource/Dirbtinis_intelektas>,<http://lv.dbpedia.org/resource/Mākslīgais_intelekts>,<http://ml.dbpedia.org/resource/കൃത്രിമബുദ്ധി>,<http://mr.dbpedia.org/resource/कृत्रिम_बुद्धिमत्ता>,<http://ms.dbpedia.org/resource/Kecerdasan_buatan>,<http://my.dbpedia.org/resource/ဉာဏ်တု>,<http://nn.dbpedia.org/resource/Kunstig_intelligens>,<http://no.dbpedia.org/resource/Kunstig_intelligens>,<http://oc.dbpedia.org/resource/Intelligéncia_artificiala>,<http://pnb.dbpedia.org/resource/بنائی_گئی_ذہانت>,<http://ro.dbpedia.org/resource/Inteligență_artificială>,<http://rue.dbpedia.org/resource/Умела_інтеліґенція>,<http://sh.dbpedia.org/resource/Umjetna_inteligencija>,<http://simple.dbpedia.org/resource/Artificial_intelligence>,<http://sk.dbpedia.org/resource/Umelá_inteligencia>,<http://sl.dbpedia.org/resource/Umetna_inteligenca>,<http://sq.dbpedia.org/resource/Inteligjenca_artificiale>,<http://sr.dbpedia.org/resource/Вјештачка_интелигенција>,<http://sv.dbpedia.org/resource/Artificiell_intelligens>,<http://ta.dbpedia.org/resource/செயற்கை_அறிவுத்திறன்>,<http://te.dbpedia.org/resource/కృత్రిమ_మేధస్సు>,<http://th.dbpedia.org/resource/ปัญญาประดิษฐ์>,<http://tl.dbpedia.org/resource/Intelihensiyang_artipisyal>,<http://tr.dbpedia.org/resource/Yapay_zekâ>,<http://tt.dbpedia.org/resource/Ясалма_интеллект>,<http://uk.dbpedia.org/resource/Штучний_інтелект>,<http://ur.dbpedia.org/resource/مصنوعی_ذہانت>,<http://vi.dbpedia.org/resource/Trí_tuệ_nhân_tạo>,<http://war.dbpedia.org/resource/Intelihensya_artipisyal>,<http://yi.dbpedia.org/resource/קינסטלעכע_אינטעליגענץ>,<http://ba.dbpedia.org/resource/Яһалма_интеллект>,<http://bat_smg.dbpedia.org/resource/Dėrbtėns_intelekts>,<http://be_x_old.dbpedia.org/resource/Штучны_інтэлект>,<http://ckb.dbpedia.org/resource/ژیریی_دەستکرد>,<http://fiu_vro.dbpedia.org/resource/Kunstmõistus>,<http://fur.dbpedia.org/resource/Inteligjence_artificiâl>,<http://jbo.dbpedia.org/resource/rutni_menli>,<http://ksh.dbpedia.org/resource/Artificial_Intelligence>,<http://mg.dbpedia.org/resource/Haranita-tsaina_voatrolombelona>,<http://mn.dbpedia.org/resource/Хиймэл_оюун_ухаан>,<http://new.dbpedia.org/resource/आर्टिफिसियल_इन्टेलिजेन्स>,<http://sah.dbpedia.org/resource/Оҥоһуу_интеллект>,<http://tk.dbpedia.org/resource/Ýasama_akyl>,<http://vec.dbpedia.org/resource/Inteligensa_artificial>,<http://zh_min_nan.dbpedia.org/resource/Jîn-kang_tì-lêng>,<http://zh_yue.dbpedia.org/resource/人工智能> ;
 	lemon:reference <http://dbpedia.org/resource/Artificial_intelligence> ;
@@ -184,6 +201,7 @@
 	lemon:definition [
 		lemon:value "Ai Qing"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Artist>,<http://dbpedia.org/ontology/Writer>,<http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Person>,<http://schema.org/Person> ;
 	rdfs:label "Ai Qing" ;
 	owl:sameAs <http://it.dbpedia.org/resource/Ai_Qing>,<http://ru.dbpedia.org/resource/Ай_Цин>,<http://de.dbpedia.org/resource/Ai_Qing>,<http://fr.dbpedia.org/resource/Ai_Qing>,<http://cs.dbpedia.org/resource/Aj_Čching>,<http://es.dbpedia.org/resource/Ai_Qing>,<http://pl.dbpedia.org/resource/Ai_Qing>,<http://nl.dbpedia.org/resource/Ai_Qing>,<http://zh.dbpedia.org/resource/艾青>,<http://mr.dbpedia.org/resource/आय_छिंग>,<http://no.dbpedia.org/resource/Ai_Qing>,<http://sv.dbpedia.org/resource/Ai_Qing>,<http://ta.dbpedia.org/resource/அய்_ஜிங்>,<http://tr.dbpedia.org/resource/Ai_Qing>,<http://zh_yue.dbpedia.org/resource/艾青> ;
 	lemon:reference <http://dbpedia.org/resource/Ai_Qing> ;
@@ -193,6 +211,7 @@
 	lemon:definition [
 		lemon:value "The Art Institutes"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Company>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "The Art Institutes" ;
 	owl:sameAs <http://it.dbpedia.org/resource/Ai_Qing>,<http://ru.dbpedia.org/resource/Ай_Цин>,<http://de.dbpedia.org/resource/Ai_Qing>,<http://fr.dbpedia.org/resource/Ai_Qing>,<http://cs.dbpedia.org/resource/Aj_Čching>,<http://es.dbpedia.org/resource/Ai_Qing>,<http://pl.dbpedia.org/resource/Ai_Qing>,<http://nl.dbpedia.org/resource/Ai_Qing>,<http://zh.dbpedia.org/resource/艾青>,<http://mr.dbpedia.org/resource/आय_छिंग>,<http://no.dbpedia.org/resource/Ai_Qing>,<http://sv.dbpedia.org/resource/Ai_Qing>,<http://ta.dbpedia.org/resource/அய்_ஜிங்>,<http://tr.dbpedia.org/resource/Ai_Qing>,<http://zh_yue.dbpedia.org/resource/艾青> ;
 	lemon:reference <http://dbpedia.org/resource/The_Art_Institutes> ;
@@ -202,6 +221,7 @@
 	lemon:definition [
 		lemon:value "Aoi Mac Ollamain"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Company>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "Aoi Mac Ollamain" ;
 	owl:sameAs <http://pl.dbpedia.org/resource/Aoi_Mac_Ollamain> ;
 	lemon:reference <http://dbpedia.org/resource/Aoi_Mac_Ollamain> ;
@@ -211,6 +231,7 @@
 	lemon:definition [
 		lemon:value "Air India"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Company>,<http://dbpedia.org/ontology/Organisation>,<http://dbpedia.org/ontology/Airline>,<http://schema.org/Organization> ;
 	rdfs:label "Air India" ;
 	owl:sameAs <http://it.dbpedia.org/resource/Air_India>,<http://pt.dbpedia.org/resource/Air_India>,<http://de.dbpedia.org/resource/Air_India>,<http://fr.dbpedia.org/resource/Air_India>,<http://ja.dbpedia.org/resource/エア・インディア>,<http://ko.dbpedia.org/resource/에어_인디아>,<http://pl.dbpedia.org/resource/Air_India>,<http://es.dbpedia.org/resource/Air_India>,<http://ru.dbpedia.org/resource/Air_India>,<http://nl.dbpedia.org/resource/Air_India>,<http://zh.dbpedia.org/resource/印度航空>,<http://ar.dbpedia.org/resource/طيران_الهند>,<http://ca.dbpedia.org/resource/Air_India>,<http://da.dbpedia.org/resource/Air_India>,<http://eo.dbpedia.org/resource/Air_India>,<http://et.dbpedia.org/resource/Air_India>,<http://fi.dbpedia.org/resource/Air_India>,<http://he.dbpedia.org/resource/אייר_אינדיה>,<http://hi.dbpedia.org/resource/एअर_इंडिया>,<http://hu.dbpedia.org/resource/Air_India>,<http://id.dbpedia.org/resource/Air_India>,<http://ml.dbpedia.org/resource/എയർ_ഇന്ത്യ>,<http://mr.dbpedia.org/resource/एअर_इंडिया>,<http://no.dbpedia.org/resource/Air_India>,<http://ro.dbpedia.org/resource/Air_India>,<http://simple.dbpedia.org/resource/Air_India>,<http://sr.dbpedia.org/resource/Ер_Индија>,<http://sv.dbpedia.org/resource/Air_India>,<http://ta.dbpedia.org/resource/ஏர்_இந்தியா>,<http://te.dbpedia.org/resource/ఎయిర్_ఇండియా>,<http://th.dbpedia.org/resource/แอร์อินเดีย>,<http://vi.dbpedia.org/resource/Air_India>,<http://diq.dbpedia.org/resource/Air_India>,<http://or.dbpedia.org/resource/ଏୟାର_ଇଣ୍ଡିଆ> ;
 	lemon:reference <http://dbpedia.org/resource/Air_India> ;
@@ -220,6 +241,7 @@
 	lemon:definition [
 		lemon:value "Appenzell Innerrhoden"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Place>,<http://dbpedia.org/ontology/PopulatedPlace>,<http://schema.org/Place> ;
 	rdfs:label "Appenzell Innerrhoden" ;
 	owl:sameAs <http://it.dbpedia.org/resource/Canton_Appenzello_Interno>,<http://ja.dbpedia.org/resource/アッペンツェル・インナーローデン準州>,<http://pt.dbpedia.org/resource/Appenzell_Interior_(cantão)>,<http://cs.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://de.dbpedia.org/resource/Kanton_Appenzell_Innerrhoden>,<http://ko.dbpedia.org/resource/아펜첼이너로덴_주>,<http://pl.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://es.dbpedia.org/resource/Cantón_de_Appenzell_Rodas_Interiores>,<http://fr.dbpedia.org/resource/Canton_d'Appenzell_Rhodes-Intérieures>,<http://ru.dbpedia.org/resource/Аппенцелль-Иннерроден>,<http://nl.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://eu.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://zh.dbpedia.org/resource/內阿彭策爾州>,<http://an.dbpedia.org/resource/Cantón_d'Appenzell_Rodas_Interiors>,<http://ar.dbpedia.org/resource/كانتون_أبينزيل_إينرهودن>,<http://bg.dbpedia.org/resource/Апенцел_Инерроден>,<http://br.dbpedia.org/resource/Kanton_Appenzell_Innerrhoden>,<http://bs.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://ca.dbpedia.org/resource/Appenzell_Inner-Rhoden>,<http://cy.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://da.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://eo.dbpedia.org/resource/Kantono_Apencelo_Interna>,<http://et.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://fa.dbpedia.org/resource/ایالت_آپنتزل_اینرهودن>,<http://fi.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://gd.dbpedia.org/resource/Appenzell_Innerrhoden_(Kanton)>,<http://gl.dbpedia.org/resource/Appenzell_Interior>,<http://hi.dbpedia.org/resource/आपनत्सेल_इन्नररोडन_कैन्टन>,<http://hr.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://id.dbpedia.org/resource/Kanton_Appenzell_Innerrhoden>,<http://ilo.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://jv.dbpedia.org/resource/Kanton_Appenzell_Innerrhoden>,<http://ka.dbpedia.org/resource/აპენცელ-ინერჰოდენის_კანტონი>,<http://kk.dbpedia.org/resource/Аппенцелль-Иннерроден>,<http://la.dbpedia.org/resource/Abbatis_Cella_Interior>,<http://lt.dbpedia.org/resource/Apencelis-Inerodenas>,<http://lv.dbpedia.org/resource/Apencelles-Innerrodenes_kantons>,<http://mr.dbpedia.org/resource/आपेंझेल_इनरर्‍होडन>,<http://nn.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://no.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://oc.dbpedia.org/resource/Canton_d'Appenzell_Innerrhoden>,<http://pnb.dbpedia.org/resource/اپنزلانرہوڈن>,<http://rm.dbpedia.org/resource/Chantun_Appenzell_Dadens>,<http://ro.dbpedia.org/resource/Cantonul_Appenzell_Intern>,<http://scn.dbpedia.org/resource/Appenzellu_Nternu>,<http://sh.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://simple.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://sk.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://sq.dbpedia.org/resource/Kantoni_Appenzell_Innerrhoden>,<http://sr.dbpedia.org/resource/Кантон_Апенцел_Инероден>,<http://sv.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://sw.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://tr.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://uk.dbpedia.org/resource/Аппенцелль_—_Іннерроден>,<http://vi.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://war.dbpedia.org/resource/Appenzell_Innerrhoden>,<http://als.dbpedia.org/resource/Kanton_Appenzell_Innerrhoden>,<http://lmo.dbpedia.org/resource/Canton_Apenzel_de_Dent>,<http://be_x_old.dbpedia.org/resource/Апэнцэль-Інэродэн>,<http://frp.dbpedia.org/resource/Apenzél_Rodes-Entèriores>,<http://zh_min_nan.dbpedia.org/resource/Appenzell_Innerrhoden_Chiu> ;
 	lemon:reference <http://dbpedia.org/resource/Appenzell_Innerrhoden> ;
@@ -229,6 +251,7 @@
 	lemon:definition [
 		lemon:value "Maned sloth"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Animal>,<http://dbpedia.org/ontology/Mammal>,<http://dbpedia.org/ontology/Species>,<http://dbpedia.org/ontology/Eukaryote> ;
 	rdfs:label "Maned sloth" ;
 	owl:sameAs <http://de.dbpedia.org/resource/Kragenfaultier>,<http://es.dbpedia.org/resource/Bradypus_torquatus>,<http://ko.dbpedia.org/resource/갈기세발가락나무늘보>,<http://pl.dbpedia.org/resource/Leniwiec_grzywiasty>,<http://fr.dbpedia.org/resource/Paresseux_à_crinière>,<http://ja.dbpedia.org/resource/タテガミナマケモノ>,<http://it.dbpedia.org/resource/Bradypus_torquatus>,<http://pt.dbpedia.org/resource/Preguiça-de-coleira>,<http://nl.dbpedia.org/resource/Kraagluiaard>,<http://eu.dbpedia.org/resource/Bradypus_torquatus>,<http://zh.dbpedia.org/resource/鬃毛三趾樹懶>,<http://br.dbpedia.org/resource/Lezireg_moueek>,<http://ca.dbpedia.org/resource/Peresós_de_collar>,<http://ceb.dbpedia.org/resource/Bradypus_torquatus>,<http://he.dbpedia.org/resource/עצלן_רעמתי>,<http://hu.dbpedia.org/resource/Galléros_lajhár>,<http://sr.dbpedia.org/resource/Bradypus_torquatus>,<http://sv.dbpedia.org/resource/Kragsengångare>,<http://tr.dbpedia.org/resource/Yeleli_tembel_hayvan>,<http://vi.dbpedia.org/resource/Bradypus_torquatus>,<http://war.dbpedia.org/resource/Bradypus_torquatus> ;
 	lemon:reference <http://dbpedia.org/resource/Maned_sloth> ;
@@ -238,6 +261,7 @@
 	lemon:definition [
 		lemon:value "Alexis I. duPont High School"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Organisation>,<http://dbpedia.org/ontology/School>,<http://dbpedia.org/ontology/EducationalInstitution>,<http://schema.org/Organization>,<http://schema.org/EducationalOrganization>,<http://schema.org/School> ;
 	rdfs:label "Alexis I. duPont High School" ;
 	owl:sameAs <http://de.dbpedia.org/resource/Kragenfaultier>,<http://es.dbpedia.org/resource/Bradypus_torquatus>,<http://ko.dbpedia.org/resource/갈기세발가락나무늘보>,<http://pl.dbpedia.org/resource/Leniwiec_grzywiasty>,<http://fr.dbpedia.org/resource/Paresseux_à_crinière>,<http://ja.dbpedia.org/resource/タテガミナマケモノ>,<http://it.dbpedia.org/resource/Bradypus_torquatus>,<http://pt.dbpedia.org/resource/Preguiça-de-coleira>,<http://nl.dbpedia.org/resource/Kraagluiaard>,<http://eu.dbpedia.org/resource/Bradypus_torquatus>,<http://zh.dbpedia.org/resource/鬃毛三趾樹懶>,<http://br.dbpedia.org/resource/Lezireg_moueek>,<http://ca.dbpedia.org/resource/Peresós_de_collar>,<http://ceb.dbpedia.org/resource/Bradypus_torquatus>,<http://he.dbpedia.org/resource/עצלן_רעמתי>,<http://hu.dbpedia.org/resource/Galléros_lajhár>,<http://sr.dbpedia.org/resource/Bradypus_torquatus>,<http://sv.dbpedia.org/resource/Kragsengångare>,<http://tr.dbpedia.org/resource/Yeleli_tembel_hayvan>,<http://vi.dbpedia.org/resource/Bradypus_torquatus>,<http://war.dbpedia.org/resource/Bradypus_torquatus> ;
 	lemon:reference <http://dbpedia.org/resource/Alexis_I._duPont_High_School> ;
@@ -247,6 +271,7 @@
 	lemon:definition [
 		lemon:value "Xie Ai"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Organisation>,<http://dbpedia.org/ontology/School>,<http://dbpedia.org/ontology/EducationalInstitution>,<http://schema.org/Organization>,<http://schema.org/EducationalOrganization>,<http://schema.org/School> ;
 	rdfs:label "Xie Ai" ;
 	owl:sameAs <http://sh.dbpedia.org/resource/Xie_Ai> ;
 	lemon:reference <http://dbpedia.org/resource/Xie_Ai> ;
@@ -256,6 +281,7 @@
 	lemon:definition [
 		lemon:value "Adobe Illustrator Artwork"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Organisation>,<http://dbpedia.org/ontology/School>,<http://dbpedia.org/ontology/EducationalInstitution>,<http://schema.org/Organization>,<http://schema.org/EducationalOrganization>,<http://schema.org/School> ;
 	rdfs:label "Adobe Illustrator Artwork" ;
 	owl:sameAs <http://pl.dbpedia.org/resource/Adobe_Illustrator_Artwork>,<http://ru.dbpedia.org/resource/Adobe_Illustrator_Artwork>,<http://fr.dbpedia.org/resource/Adobe_Illustrator_Artwork>,<http://uk.dbpedia.org/resource/AI_(формат_файлів)> ;
 	lemon:reference <http://dbpedia.org/resource/Adobe_Illustrator_Artwork> ;
@@ -265,6 +291,7 @@
 	lemon:definition [
 		lemon:value "Emperor Ai of Tang"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Organisation>,<http://dbpedia.org/ontology/School>,<http://dbpedia.org/ontology/EducationalInstitution>,<http://schema.org/Organization>,<http://schema.org/EducationalOrganization>,<http://schema.org/School> ;
 	rdfs:label "Emperor Ai of Tang" ;
 	owl:sameAs <http://de.dbpedia.org/resource/Tang_Aidi>,<http://ja.dbpedia.org/resource/哀帝_(唐)>,<http://ko.dbpedia.org/resource/당_애종>,<http://zh.dbpedia.org/resource/唐哀帝>,<http://sh.dbpedia.org/resource/Car_Ai_od_Tanga>,<http://th.dbpedia.org/resource/จักรพรรดิถังไอ>,<http://uk.dbpedia.org/resource/Ай-ді_(династія_Тан)>,<http://vi.dbpedia.org/resource/Đường_Ai_Đế> ;
 	lemon:reference <http://dbpedia.org/resource/Emperor_Ai_of_Tang> ;
@@ -274,6 +301,7 @@
 	lemon:definition [
 		lemon:value "King Ai of Zhou"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/BritishRoyalty>,<http://dbpedia.org/ontology/Person>,<http://dbpedia.org/ontology/Royalty>,<http://schema.org/Person> ;
 	rdfs:label "King Ai of Zhou" ;
 	owl:sameAs <http://ja.dbpedia.org/resource/哀王_(周)>,<http://ko.dbpedia.org/resource/동주_애왕>,<http://pl.dbpedia.org/resource/Aiwang>,<http://fr.dbpedia.org/resource/Zhou_Aiwang>,<http://zh.dbpedia.org/resource/周哀王>,<http://sh.dbpedia.org/resource/Kralj_Ai_od_Zhoua>,<http://vi.dbpedia.org/resource/Chu_Ai_vương> ;
 	lemon:reference <http://dbpedia.org/resource/King_Ai_of_Zhou> ;
@@ -283,6 +311,7 @@
 	lemon:definition [
 		lemon:value "Active ingredient"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/BritishRoyalty>,<http://dbpedia.org/ontology/Person>,<http://dbpedia.org/ontology/Royalty>,<http://schema.org/Person> ;
 	rdfs:label "Active ingredient" ;
 	owl:sameAs <http://de.dbpedia.org/resource/Arzneistoff>,<http://fr.dbpedia.org/resource/Substance_active_(médicament)>,<http://ja.dbpedia.org/resource/有効成分>,<http://ru.dbpedia.org/resource/Действующее_вещество>,<http://pt.dbpedia.org/resource/Princípio_ativo>,<http://it.dbpedia.org/resource/Principio_attivo>,<http://pl.dbpedia.org/resource/Substancja_czynna>,<http://eu.dbpedia.org/resource/Osagai_aktibo>,<http://zh.dbpedia.org/resource/原料药>,<http://ca.dbpedia.org/resource/Principi_actiu>,<http://eo.dbpedia.org/resource/Farmako>,<http://lt.dbpedia.org/resource/Veiklioji_medžiaga>,<http://ms.dbpedia.org/resource/Perawis_aktif>,<http://sv.dbpedia.org/resource/Aktiv_substans>,<http://th.dbpedia.org/resource/ตัวยาสำคัญ> ;
 	lemon:reference <http://dbpedia.org/resource/Active_ingredient> ;
@@ -292,6 +321,7 @@
 	lemon:definition [
 		lemon:value "A.I. Artificial Intelligence"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Film>,<http://dbpedia.org/ontology/Work>,<http://schema.org/Movie>,<http://schema.org/CreativeWork> ;
 	rdfs:label "A.I. Artificial Intelligence" ;
 	owl:sameAs <http://es.dbpedia.org/resource/Inteligencia_artificial_(película)>,<http://fr.dbpedia.org/resource/A.I._Intelligence_artificielle>,<http://it.dbpedia.org/resource/A.I._-_Intelligenza_artificiale>,<http://pl.dbpedia.org/resource/A.I._Sztuczna_inteligencja>,<http://de.dbpedia.org/resource/A.I._–_Künstliche_Intelligenz>,<http://ja.dbpedia.org/resource/A.I.>,<http://ko.dbpedia.org/resource/A.I.>,<http://pt.dbpedia.org/resource/A.I._-_Inteligência_Artificial>,<http://ru.dbpedia.org/resource/Искусственный_разум_(фильм)>,<http://el.dbpedia.org/resource/Α.Ι._Τεχνητή_Νοημοσύνη>,<http://nl.dbpedia.org/resource/Artificial_Intelligence:_A.I.>,<http://zh.dbpedia.org/resource/人工智能_(电影)>,<http://ar.dbpedia.org/resource/أي_آي_:_الذكاء_الاصطناعي_(فيلم)>,<http://az.dbpedia.org/resource/Süni_intellekt_(film>,_2001)>,<http://bg.dbpedia.org/resource/A.I.:_Изкуствен_интелект>,<http://bn.dbpedia.org/resource/আর্টিফিশিয়াল_ইন্টেলিজেন্স:_এআই>,<http://ca.dbpedia.org/resource/Artificial_Intelligence:_A.I.>,<http://da.dbpedia.org/resource/A._I._-_kunstig_intelligens>,<http://fa.dbpedia.org/resource/هوش_مصنوعی_(فیلم)>,<http://fi.dbpedia.org/resource/A.I._–_Tekoäly>,<http://gl.dbpedia.org/resource/A.I._Artificial_Intelligence>,<http://he.dbpedia.org/resource/אינטליגנציה_מלאכותית_(סרט)>,<http://hr.dbpedia.org/resource/Umjetna_inteligencija_(2001.)>,<http://lt.dbpedia.org/resource/Dirbtinis_intelektas_(filmas)>,<http://ms.dbpedia.org/resource/Filem_A.I._Artificial_Intelligence>,<http://no.dbpedia.org/resource/A.I.:_kunstig_intelligens>,<http://ro.dbpedia.org/resource/Inteligență_artificială_(film)>,<http://sh.dbpedia.org/resource/A.I._Artificial_Intelligence>,<http://sr.dbpedia.org/resource/Вештачка_интелигенција_(филм)>,<http://sv.dbpedia.org/resource/A.I._–_Artificiell_Intelligens>,<http://th.dbpedia.org/resource/จักรกลอัจฉริยะ>,<http://tr.dbpedia.org/resource/Yapay_Zeka_(film)>,<http://uk.dbpedia.org/resource/Штучний_розум_(фільм)> ;
 	lemon:reference <http://dbpedia.org/resource/A.I._Artificial_Intelligence> ;
@@ -301,6 +331,7 @@
 	lemon:definition [
 		lemon:value "Emperor Ai of Jin"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Film>,<http://dbpedia.org/ontology/Work>,<http://schema.org/Movie>,<http://schema.org/CreativeWork> ;
 	rdfs:label "Emperor Ai of Jin" ;
 	owl:sameAs <http://ja.dbpedia.org/resource/哀帝_(東晋)>,<http://pt.dbpedia.org/resource/Aidi_de_Jin>,<http://zh.dbpedia.org/resource/晉哀帝>,<http://ca.dbpedia.org/resource/Emperador_Ai_de_Jin>,<http://sh.dbpedia.org/resource/Car_Ai_od_Jina>,<http://uk.dbpedia.org/resource/Сима_Пі>,<http://vi.dbpedia.org/resource/Tấn_Ai_Đế> ;
 	lemon:reference <http://dbpedia.org/resource/Emperor_Ai_of_Jin> ;
@@ -310,6 +341,7 @@
 	lemon:definition [
 		lemon:value "Ai Toyon"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Film>,<http://dbpedia.org/ontology/Work>,<http://schema.org/Movie>,<http://schema.org/CreativeWork> ;
 	rdfs:label "Ai Toyon" ;
 	owl:sameAs <http://ru.dbpedia.org/resource/Юрюнг_айы_тойон>,<http://az.dbpedia.org/resource/Ayığ_xan>,<http://tr.dbpedia.org/resource/Ürüng_Ayığ_Toyon>,<http://sah.dbpedia.org/resource/Үрүҥ_Аар_Айыы_Тойон> ;
 	lemon:reference <http://dbpedia.org/resource/Ai_Toyon> ;
@@ -319,6 +351,7 @@
 	lemon:definition [
 		lemon:value "Accessinterviews.com"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Film>,<http://dbpedia.org/ontology/Work>,<http://schema.org/Movie>,<http://schema.org/CreativeWork> ;
 	rdfs:label "Accessinterviews.com" ;
 	owl:sameAs <http://ru.dbpedia.org/resource/Юрюнг_айы_тойон>,<http://az.dbpedia.org/resource/Ayığ_xan>,<http://tr.dbpedia.org/resource/Ürüng_Ayığ_Toyon>,<http://sah.dbpedia.org/resource/Үрүҥ_Аар_Айыы_Тойон> ;
 	lemon:reference <http://dbpedia.org/resource/Accessinterviews.com> ;
@@ -328,6 +361,7 @@
 	lemon:definition [
 		lemon:value "Articulation Index"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Film>,<http://dbpedia.org/ontology/Work>,<http://schema.org/Movie>,<http://schema.org/CreativeWork> ;
 	rdfs:label "Articulation Index" ;
 	owl:sameAs <http://ru.dbpedia.org/resource/Юрюнг_айы_тойон>,<http://az.dbpedia.org/resource/Ayığ_xan>,<http://tr.dbpedia.org/resource/Ürüng_Ayığ_Toyon>,<http://sah.dbpedia.org/resource/Үрүҥ_Аар_Айыы_Тойон> ;
 	lemon:reference <http://dbpedia.org/resource/Articulation_Index> ;
@@ -337,6 +371,7 @@
 	lemon:definition [
 		lemon:value "Adriatic Institute for Public Policy"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Film>,<http://dbpedia.org/ontology/Work>,<http://schema.org/Movie>,<http://schema.org/CreativeWork> ;
 	rdfs:label "Adriatic Institute for Public Policy" ;
 	owl:sameAs <http://ru.dbpedia.org/resource/Юрюнг_айы_тойон>,<http://az.dbpedia.org/resource/Ayığ_xan>,<http://tr.dbpedia.org/resource/Ürüng_Ayığ_Toyon>,<http://sah.dbpedia.org/resource/Үрүҥ_Аар_Айыы_Тойон> ;
 	lemon:reference <http://dbpedia.org/resource/Adriatic_Institute_for_Public_Policy> ;
@@ -346,6 +381,7 @@
 	lemon:definition [
 		lemon:value "Ai (singer)"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Artist>,<http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/MusicalArtist>,<http://dbpedia.org/ontology/Person>,<http://schema.org/MusicGroup>,<http://schema.org/Person> ;
 	rdfs:label "Ai (singer)" ;
 	owl:sameAs <http://de.dbpedia.org/resource/Ai_(Sängerin)>,<http://fr.dbpedia.org/resource/AI_(chanteuse)>,<http://ja.dbpedia.org/resource/AI_(歌手)>,<http://ko.dbpedia.org/resource/AI_(가수)>,<http://pt.dbpedia.org/resource/Ai_(cantora)>,<http://id.dbpedia.org/resource/Ai_(penyanyi)> ;
 	lemon:reference <http://dbpedia.org/resource/Ai_(singer)> ;
@@ -355,6 +391,7 @@
 	lemon:definition [
 		lemon:value "Airship Industries"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Company>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "Airship Industries" ;
 	owl:sameAs <http://de.dbpedia.org/resource/Ai_(Sängerin)>,<http://fr.dbpedia.org/resource/AI_(chanteuse)>,<http://ja.dbpedia.org/resource/AI_(歌手)>,<http://ko.dbpedia.org/resource/AI_(가수)>,<http://pt.dbpedia.org/resource/Ai_(cantora)>,<http://id.dbpedia.org/resource/Ai_(penyanyi)> ;
 	lemon:reference <http://dbpedia.org/resource/Airship_Industries> ;
@@ -364,6 +401,7 @@
 	lemon:definition [
 		lemon:value "American Iron Racing"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Company>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "American Iron Racing" ;
 	owl:sameAs <http://nl.dbpedia.org/resource/American_Iron_Racing> ;
 	lemon:reference <http://dbpedia.org/resource/American_Iron_Racing> ;
@@ -373,6 +411,7 @@
 	lemon:definition [
 		lemon:value "Air interdiction"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Company>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "Air interdiction" ;
 	owl:sameAs <http://fr.dbpedia.org/resource/Opération_aérienne>,<http://es.dbpedia.org/resource/Interdicción_aérea>,<http://de.dbpedia.org/resource/Abriegelung_aus_der_Luft>,<http://ja.dbpedia.org/resource/航空阻止>,<http://pt.dbpedia.org/resource/Interdição_aérea>,<http://he.dbpedia.org/resource/אמנעה_אווירית>,<http://ms.dbpedia.org/resource/Larangan_udara> ;
 	lemon:reference <http://dbpedia.org/resource/Air_interdiction> ;
@@ -382,6 +421,7 @@
 	lemon:definition [
 		lemon:value "Ai, Ohio"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Company>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "Ai, Ohio" ;
 	owl:sameAs <http://fr.dbpedia.org/resource/Opération_aérienne>,<http://es.dbpedia.org/resource/Interdicción_aérea>,<http://de.dbpedia.org/resource/Abriegelung_aus_der_Luft>,<http://ja.dbpedia.org/resource/航空阻止>,<http://pt.dbpedia.org/resource/Interdição_aérea>,<http://he.dbpedia.org/resource/אמנעה_אווירית>,<http://ms.dbpedia.org/resource/Larangan_udara> ;
 	lemon:reference <http://dbpedia.org/resource/Ai,_Ohio> ;
@@ -391,6 +431,7 @@
 	lemon:definition [
 		lemon:value "Ad interim"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Person>,<http://dbpedia.org/ontology/SoccerManager>,<http://dbpedia.org/ontology/SportsManager>,<http://schema.org/Person> ;
 	rdfs:label "Ad interim" ;
 	owl:sameAs <http://ru.dbpedia.org/resource/Зауряд>,<http://pt.dbpedia.org/resource/Ad_interim>,<http://es.dbpedia.org/resource/Ad_interim>,<http://it.dbpedia.org/resource/Ad_interim>,<http://bg.dbpedia.org/resource/Ad_interim>,<http://id.dbpedia.org/resource/Ad_interim>,<http://no.dbpedia.org/resource/Interim>,<http://sv.dbpedia.org/resource/Interim> ;
 	lemon:reference <http://dbpedia.org/resource/Ad_interim> ;
@@ -400,6 +441,7 @@
 	lemon:definition [
 		lemon:value "Ai (chimpanzee)"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Person>,<http://schema.org/Person> ;
 	rdfs:label "Ai (chimpanzee)" ;
 	owl:sameAs <http://ja.dbpedia.org/resource/アイ_(チンパンジー)> ;
 	lemon:reference <http://dbpedia.org/resource/Ai_(chimpanzee)> ;
@@ -409,6 +451,7 @@
 	lemon:definition [
 		lemon:value "Accommodative insufficiency"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Person>,<http://schema.org/Person> ;
 	rdfs:label "Accommodative insufficiency" ;
 	owl:sameAs <http://ja.dbpedia.org/resource/アイ_(チンパンジー)> ;
 	lemon:reference <http://dbpedia.org/resource/Accommodative_insufficiency> ;
@@ -418,6 +461,7 @@
 	lemon:definition [
 		lemon:value "Appreciation Index"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Person>,<http://schema.org/Person> ;
 	rdfs:label "Appreciation Index" ;
 	owl:sameAs <http://fr.dbpedia.org/resource/Appreciation_Index>,<http://zh.dbpedia.org/resource/欣赏指数>,<http://no.dbpedia.org/resource/Appreciation_Index> ;
 	lemon:reference <http://dbpedia.org/resource/Appreciation_Index> ;
@@ -427,6 +471,7 @@
 	lemon:definition [
 		lemon:value "Accuracy International"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Company>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "Accuracy International" ;
 	owl:sameAs <http://pl.dbpedia.org/resource/Accuracy_International>,<http://de.dbpedia.org/resource/Accuracy_International>,<http://fr.dbpedia.org/resource/Accuracy_International>,<http://it.dbpedia.org/resource/Accuracy_International>,<http://ja.dbpedia.org/resource/アキュラシー・インターナショナル>,<http://nl.dbpedia.org/resource/Accuracy_International>,<http://zh.dbpedia.org/resource/精密國際>,<http://id.dbpedia.org/resource/Accuracy_International>,<http://ms.dbpedia.org/resource/Accuracy_International>,<http://sl.dbpedia.org/resource/Accuracy_International>,<http://sv.dbpedia.org/resource/Accuracy_International> ;
 	lemon:reference <http://dbpedia.org/resource/Accuracy_International> ;
@@ -436,6 +481,7 @@
 	lemon:definition [
 		lemon:value "Aisiqi"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Company>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "Aisiqi" ;
 	owl:sameAs <http://ru.dbpedia.org/resource/Айсыци>,<http://zh.dbpedia.org/resource/艾思奇> ;
 	lemon:reference <http://dbpedia.org/resource/Aisiqi> ;
@@ -445,6 +491,7 @@
 	lemon:definition [
 		lemon:value "Sima Ai"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/Agent>,<http://dbpedia.org/ontology/Company>,<http://dbpedia.org/ontology/Organisation>,<http://schema.org/Organization> ;
 	rdfs:label "Sima Ai" ;
 	owl:sameAs <http://ja.dbpedia.org/resource/司馬乂>,<http://zh.dbpedia.org/resource/司馬乂>,<http://ca.dbpedia.org/resource/Sima_Ai>,<http://sh.dbpedia.org/resource/Sima_Ai> ;
 	lemon:reference <http://dbpedia.org/resource/Sima_Ai> ;
@@ -454,6 +501,7 @@
 	lemon:definition [
 		lemon:value "Ai (given name)"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/GivenName>,<http://dbpedia.org/ontology/Name> ;
 	rdfs:label "Ai (given name)" ;
 	owl:sameAs <http://pl.dbpedia.org/resource/Ai>,<http://ru.dbpedia.org/resource/Ай_(имя)>,<http://fr.dbpedia.org/resource/Ai_(prénom)> ;
 	lemon:reference <http://dbpedia.org/resource/Ai_(given_name)> ;
@@ -463,8 +511,8 @@
 	lemon:definition [
 		lemon:value "Agios"@en
 	] ;
+	rdf:type <http://dbpedia.org/ontology/GivenName>,<http://dbpedia.org/ontology/Name> ;
 	rdfs:label "Agios" ;
 	owl:sameAs <http://pl.dbpedia.org/resource/Ai>,<http://ru.dbpedia.org/resource/Ай_(имя)>,<http://fr.dbpedia.org/resource/Ai_(prénom)> ;
 	lemon:reference <http://dbpedia.org/resource/Agios> ;
 	a lemon:LexicalSense .
-
