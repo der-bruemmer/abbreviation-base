@@ -74,22 +74,22 @@ def main(argv):
 
 	#below will make URL for different files to be downloaded
 	redirect = root+language+"/redirects_"+language+".ttl.bz2"
-	instance = root+language+"/instance_types_"+language+".ttl.bz2"
+	instance = root+language+"/instance_types_heuristic_"+language+".ttl.
 	InterLang_Links = root+language+"/interlanguage_links_"+language+".ttl.bz2"
 	InterLang_Links_Chap = root+language+"/interlanguage_links_chapters_"+language+".ttl.bz2"
 	label = root+language+"/labels_"+language+".ttl.bz2"
-	category = root+language+"/category_labels_"+language+".ttl.bz2"
+	category = root+language+"/article_categories_"+language+".ttl.bz2"
 	disambiguation = root+language+"/disambiguations_"+language+".ttl.bz2"
 	
 	dwn=open("download_time.txt","w") #file to store time take by each file to download and decomress
 
 	#downloaded 7 files namely:
 	#1. redirects- contains abbreviations
-	#2. instance_types
+	#2. instance_types_heuristic
 	#3. interlanguage_links
 	#4. interlanguage_links_chapters
 	#5. labels
-	#6. category_labels
+	#6. article_categories
 	#7. disambiguations
 
 	st=time.time()
