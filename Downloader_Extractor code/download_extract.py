@@ -81,7 +81,7 @@ def main(argv):
 	category = root+language+"/article_categories_"+language+".ttl.bz2"
 	disambiguation = root+language+"/disambiguations_"+language+".ttl.bz2"
 	
-	dwn=open("download_time.txt","w") #file to store time take by each file to download and decomress
+	#dwn=open("download_time.txt","w") #file to store time take by each file to download and decomress
 
 	#downloaded 7 files namely:
 	#1. redirects- contains abbreviations
@@ -92,43 +92,19 @@ def main(argv):
 	#6. article_categories
 	#7. disambiguations
 
-	st=time.time()
 	f=download_file(redirect,1)
-	et=time.time()
-	to_file="1. "+f+" took "+ str(et-st) +"\n"
-	dwn.write(to_file)
-	st=time.time()	
+		
 	f=download_file(instance)
-	et=time.time()
-	to_file="2. "+f+" took "+ str(et-st) +"\n"
-	dwn.write(to_file)
-	st=time.time()	
+		
 	f=download_file(InterLang_Links)
-	et=time.time()
-	to_file="3. "+f+" took "+ str(et-st) +"\n"
-	dwn.write(to_file)
-	st=time.time()	
+		
 	f=download_file(InterLang_Links_Chap)	
-	et=time.time()
-	to_file="4. "+f+" took "+ str(et-st) +"\n"
-	dwn.write(to_file)
-	st=time.time()	
+		
 	f=download_file(label)
-	et=time.time()
-	to_file="5. "+f+" took "+ str(et-st) +"\n"
-	dwn.write(to_file)
-	st=time.time()	
+		
 	f=download_file(category)	
-	et=time.time()
-	to_file="6. "+f+" took "+ str(et-st) +"\n"
-	dwn.write(to_file)
-	st=time.time()	
+		
 	f=download_file(disambiguation)
-	et=time.time()
-	to_file="7. "+f+" took "+ str(et-st) +"\n"
-	dwn.write(to_file)
 	
-	dwn.close()
-
 if __name__ == "__main__":
     main(sys.argv[1:])
