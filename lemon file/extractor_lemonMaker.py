@@ -105,8 +105,8 @@ def getOriginalLanguageData(abbrev, uri):
 def main(argv):
     global language
     language = argv[0]
-    in_directory = '/home/akswadmin/dbpedia_files'
-    out_directory = '/home/abbrev_extracted/'+language
+    in_directory = '/home/akswadmin/dbpedia_files/'
+    out_directory = '/home/akswadmin/abbrev_extracted/'+language
     if not os.path.exists(out_directory):
         os.makedirs(out_directory)
     
