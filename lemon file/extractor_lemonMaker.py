@@ -15,9 +15,10 @@
 import sys, getopt, os, collections 
 from SPARQLWrapper import SPARQLWrapper, JSON
 import re
-
+global language
 def getDisambiguations(abbrev, uri):
-    query = "select distinct ?o, (str(?name) AS ?label), ?name, (str(?abstract) AS ?en_abstr) where {"+uri+" <http://dbpedia.org/ontology/wikiPageDisambiguates> ?o. ?o <http://www.w3.org/2000/01/rdf-schema#label> ?name. FILTER(langMatches(lang(?name), \"EN\")) OPTIONAL {?o <http://dbpedia.org/ontology/abstract> ?abstract. FILTER(langMatches(lang(?abstract), \"EN\")) }}"
+    global language
+    query = "select distinct ?o, (str(?name) AS ?label), ?name where {"+uri+" <http://dbpedia.org/ontology/wikiPageDisambiguates> ?o. ?o <http://www.w3.org/2000/01/rdf-schema#label> ?name.FILTER(langMatches(lang(?name), \""+language.upper()+"\")) }"
     sparql = SPARQLWrapper("http://dbpedia.org/sparql")
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
@@ -27,18 +28,14 @@ def getDisambiguations(abbrev, uri):
         count=1
         for result in results["results"]["bindings"]:
 
-            #abstract = ""
-            #if "en_abstr" in result:
-                #abstract = result["en_abstr"]["value"]
-
             #fetch sameAs result for each disambiguation
-            query_sameAs = 'select ?lang where {<'+result["o"]["value"]+'> owl:sameAs ?lang. filter(regex(?lang,"dbpedia"))}' 
+            query_sameAs = 'select ?lang where {<'+result["o"]["value"]+'> owl:sameAs ?lang. filter(contains(STR(?lang),"dbpedia"))}' 
             sparql.setQuery(query_sameAs)
             sparql.setReturnFormat(JSON)
             results_sameAs = sparql.query().convert()
   
             #fetch type for each disamb (but ignored for now)
-            query_type = 'select distinct ?type where {<'+result["o"]["value"]+'> rdf:type ?type. FILTER (REGEX(?type, "ontology") || REGEX(?type, "schema"))}' 
+            query_type = 'select distinct ?type where {<'+result["o"]["value"]+'> rdf:type ?type. FILTER (contains(STR(?type), "ontology") || contains(STR(?type), "schema"))}' 
             sparql.setQuery(query_type)
             sparql.setReturnFormat(JSON)
             results_type = sparql.query().convert()
@@ -58,7 +55,7 @@ def getDisambiguations(abbrev, uri):
 
     except ValueError:
         #control comes here if abbreviations does not has a disambiguation
-        query = "select distinct ?o, (str(?name) AS ?label),?name where {"+uri+" <http://dbpedia.org/ontology/wikiPageDisambiguates> ?o. ?o <http://www.w3.org/2000/01/rdf-schema#label> ?name. FILTER(langMatches(lang(?name), \"EN\"))}"
+        query = "select distinct ?o, (str(?name) AS ?label),?name where {"+uri+" <http://dbpedia.org/ontology/wikiPageDisambiguates> ?o. ?o <http://www.w3.org/2000/01/rdf-schema#label> ?name.FILTER(langMatches(lang(?name), \""+language.upper()+"\")) }"
         sparql.setQuery(query)
         sparql.setReturnFormat(JSON)
         results = sparql.query().convert()
@@ -71,7 +68,8 @@ def getDisambiguations(abbrev, uri):
 
 
 def getOriginalLanguageData(abbrev, uri):
-    query = "select distinct (str(?name) AS ?label), ?name, (str(?abstract) AS ?en_abstr) where {<"+uri+"> <http://www.w3.org/2000/01/rdf-schema#label> ?name. FILTER(langMatches(lang(?name), \"EN\")) OPTIONAL {<"+uri+"> <http://dbpedia.org/ontology/abstract> ?abstract. FILTER(langMatches(lang(?abstract), \"EN\")) }}"
+    global language
+    query = "select distinct (str(?name) AS ?label), ?name, (str(?abstract) AS ?en_abstr) where {<"+uri+"> <http://www.w3.org/2000/01/rdf-schema#label> ?name.FILTER(langMatches(lang(?name), \""+language.upper()+"\")) }"
     sparql = SPARQLWrapper("http://dbpedia.org/sparql")
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
@@ -79,9 +77,7 @@ def getOriginalLanguageData(abbrev, uri):
         results = sparql.query().convert()
         data = []
         for result in results["results"]["bindings"]:
-            #abstract = ""
-            #if "en_abstr" in result:
-                #abstract = result["en_abstr"]["value"]
+            
             query_sameAs = 'select ?lang where {<'+uri+'> owl:sameAs ?lang. filter(regex(?lang,"dbpedia"))}'   #fetch sameAs result for each abbreviation
             sparql.setQuery(query_sameAs)
             sparql.setReturnFormat(JSON)
@@ -106,36 +102,33 @@ def getOriginalLanguageData(abbrev, uri):
         data = [uri[uri.rfind("/")+1:-1].replace("_"," "),uri,""]
         return data
 
-def only_roman_chars(s):
-    try:
-        s.encode("iso-8859-1")
-        return True
-    except UnicodeEncodeError:
-        return False
-
 def main(argv):
-    language=argv[0]
-    infile = './../DBpedia/'+language+'/data/redirects_en.ttl'  #location of input file
-    outfile = 'abbreviation_extracted.txt'  #output file
-    lemon_file = 'abbreviation_lemon_'+language+'.ttl'  #lemon file
+    global language
+    language = argv[0]
+    in_directory = '/usr/local/share/virtuoso/vad/'
+    out_directory = '/Abbrev_Extracted/'+language
+    if not os.path.exists(out_directory):
+        os.makedirs(out_directory)
+    
+    infile = in_directory+language+'/data/redirects_en.ttl'  #location of input file
+    outfile = out_directory+'/abbreviation_tsv_'+language+'.txt'  #output file
+    lemon_file = out_directory+'/abbreviation_lemon_'+language+'.ttl'  #lemon file
     input_file = open(infile,'r')
     output = open(outfile,'w')
     lemon = open(lemon_file,'w')
     abbrevs = collections.OrderedDict()
     output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\n")
-    lemon.write("@prefix : <http://www.example.org/lexicon> .\n@prefix lemon: <http://www.monnetproject.eu/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf- syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n\n")
+    lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf- syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n\n")
     lemon.write('\n:myLexicon a lemon:Lexicon ;\n\tlemon:language "'+language+'" ;\n')
     count = 0
     count_line=0
     for line in input_file:
-        #if count_line == 2:
-        	#break
-        #count_line+=1
+        """if count_line == 2:
+            break
+        count_line+=1"""
         uris = line.split(" ")		#splits the triple and stores is as list
         abbrev = uris[0][uris[0].rfind("resource/")+9:-1]    #stores abbreviation
-        print(uris)
-        if not only_roman_chars(abbrev):
-            continue
+        #print(uris)
         if abbrev.endswith("..."):
             continue
         #meaning = uris[2][uris[2].rfind("/")+1:-1]
@@ -205,7 +198,7 @@ def main(argv):
         rdfType_string=rdfType_string.replace(",",">,")
         if len(rdfType_string)>0:
                 rdfType_string+='>'
-        print(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\n")
+        #print(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\n")
         output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\n")
         if k[-1]!='.' and k[-1]!='?' and k[-1]!='!':
                 k1 = k.split(" ")[1]
