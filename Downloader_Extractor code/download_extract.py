@@ -38,7 +38,7 @@ def download_file(url,abbrevFile=0):
 
 def decompress(file_name,abbrevFile=0):
 	global language
-	location = '/usr/local/share/virtuoso/vad/'
+	location = '/home/akswadmin/dbpedia_files/'
 	new_file = file_name.replace(".bz2",'')	
 	directory= location+language+"/data"  #makes a new dirctory like for french fr/data, this will store extracted data
 	
