@@ -8,7 +8,7 @@ import time
 global language
 
 #this function downloads the files and shows the progress bar as per the file being downloaded
-def download_file(url,flag=0):
+def download_file(url,abbrevFile=0):
 	file_name = url.split('/')[-1]
 	u = urllib2.urlopen(url)
 	if os.path.isfile(file_name):
@@ -33,10 +33,10 @@ def download_file(url,flag=0):
 	    print status,
 	f.close()
 	print file_name, "downloaded successfully..."
-	decompress(file_name,flag)
+	decompress(file_name,abbrevFile)
 	return file_name
 
-def decompress(file_name,flag=0):
+def decompress(file_name,abbrevFile=0):
 	global language
 	location = '/usr/local/share/virtuoso/vad/'
 	new_file = file_name.replace(".bz2",'')	
@@ -53,7 +53,7 @@ def decompress(file_name,flag=0):
 	#here we download abbreviations ending with .,! or ? but this is only in redirects, which contains all the abbreviations 
 	#rest of the files contain meanings so no regular expression required
 
-	if flag:
+	if abbrevFile:
 		for line in line_list :
 			obj=re.match(r'<http://dbpedia.org/resource/.*[\?!\.]> <.*> <.*>',line)
 			if obj:
