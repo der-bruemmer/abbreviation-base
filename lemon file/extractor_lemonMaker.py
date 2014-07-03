@@ -105,8 +105,8 @@ def getOriginalLanguageData(abbrev, uri):
 def main(argv):
     global language
     language = argv[0]
-    in_directory = '/usr/local/share/virtuoso/vad/'
-    out_directory = '/Abbrev_Extracted/'+language
+    in_directory = '/home/akswadmin/dbpedia_files'
+    out_directory = '/home/abbrev_extracted/'+language
     if not os.path.exists(out_directory):
         os.makedirs(out_directory)
     
@@ -119,7 +119,7 @@ def main(argv):
     abbrevs = collections.OrderedDict()
     output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\n")
     lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf- syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n\n")
-    lemon.write('\n:myLexicon a lemon:Lexicon ;\n\tlemon:language "'+language+'" ;\n')
+    lemon.write('\n<http://nlp.dbpedia.org/abbrevbase/lexicon/'+language+'>\n a lemon:Lexicon ;\n\tlemon:language "'+language+'" ;\n')
     count = 0
     count_line=0
     for line in input_file:
