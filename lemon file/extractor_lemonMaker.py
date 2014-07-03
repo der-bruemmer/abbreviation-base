@@ -6,11 +6,10 @@
 #----list_sameAs ==> owl:sameAs
 #----list_type ==> rdf:type "but works only for abbreviations with disambiguations"
 #----abbrev ==> writtenRep , stores abbrev
-#----category  ==> yet to be fetched
+#----category  ==> <http://purl.org/dc/terms/subject> 
 
 #----------------Text file format----------------------
-#abbreviation	definition	label	reference	sameAs(list format)
-# P.S. category is not yet fetched completely so they have been omitted
+#abbreviation	definition	label	reference	sameAs(list format)	type	category
 
 import sys, getopt, os, collections 
 from SPARQLWrapper import SPARQLWrapper, JSON
@@ -48,8 +47,17 @@ def getDisambiguations(abbrev, uri):
             for result_type in results_type["results"]["bindings"]:
                 list_type.append(result_type["type"]["value"])      #store the query result in a list
 
+            query_cat = 'select distinct ?cat where {<'+result["o"]["value"]+'>  <http://purl.org/dc/terms/subject> ?cat }'
+            sparql.setQuery(query_cat)
+            sparql.setReturnFormat(JSON)
+            results_cat = sparql.query().convert()
+            
+            list_cat=[]
+            for result_cat in results_cat["results"]["bindings"]:
+                list_cat.append(result_cat["cat"]["value"])
+
             #dictionary where key is abbreviation+count and value is label, reference link and sameAs fetched from query
-            abbrevs[abbrev+" "+str(count)] = [result["label"]["value"],result["o"]["value"],list_sameAs,list_type]
+            abbrevs[abbrev+" "+str(count)] = [result["label"]["value"],result["o"]["value"],list_sameAs,list_type,list_cat]
             count+=1
         return abbrevs
 
@@ -94,9 +102,18 @@ def getOriginalLanguageData(abbrev, uri):
 
             for result_type in results_type["results"]["bindings"]:
                 list_type.append(result_type["type"]["value"])      #store the query result in a list
+           
+            query_cat = 'select distinct ?cat where {<'+uri+'>  <http://purl.org/dc/terms/subject> ?cat }'
+            sparql.setQuery(query_cat)
+            sparql.setReturnFormat(JSON)
+            results_cat = sparql.query().convert()
 
+            list_cat=[]
+            for result_cat in results_cat["results"]["bindings"]:
+                list_cat.append(result_cat["cat"]["value"])
+            
             #dictionary where key is abbreviation+count and value is label, reference link and sameAs fetched from query
-            data = [result["label"]["value"],uri,list_sameAs,list_type]
+            data = [result["label"]["value"],uri,list_sameAs,list_type,list_cat]
         return data
     except ValueError:
         data = [uri[uri.rfind("/")+1:-1].replace("_"," "),uri,""]
@@ -118,8 +135,8 @@ def main(argv):
     lemon = open(lemon_file,'w')
     abbrevs = collections.OrderedDict()
     output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\n")
-    lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf- syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n\n")
-    lemon.write('\n<http://nlp.dbpedia.org/abbrevbase/lexicon/'+language+'>\n a lemon:Lexicon ;\n\tlemon:language "'+language+'" ;\n')
+    lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf- syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n\n")
+    lemon.write('\n<http://nlp.dbpedia.org/abbrevbase/lexicon/'+language+'>\n a lemon:Lexicon\n\tlemon:language "'+language+'" ;\n')
     count = 0
     count_line=0
     for line in input_file:
@@ -184,7 +201,7 @@ def main(argv):
                                 string_to_write += "<" + temp_abbr.split(" ")[0] + "_Sense>, "
                 string_to_write = string_to_write[:-2]+' ;\n\ta lemon:LexicalEntry .\n\n<'+abbrevString+'_Form>\n\tlemon:writtenRep \"'+abbrevString+'\"@'+language+' ;\n\ta lemon:LexicalForm .\n\n'
                 lemon.write(string_to_write)
-        #s1=input('Enter')
+        s1=input('Enter')
         sameAs_string = ','.join(v[3])  #converts sameAs from list to string format
         sameAs_string=sameAs_string.replace("http","<http")
         sameAs_string=sameAs_string.replace(",",">,")
@@ -198,8 +215,15 @@ def main(argv):
         rdfType_string=rdfType_string.replace(",",">,")
         if len(rdfType_string)>0:
                 rdfType_string+='>'
-        #print(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\n")
-        output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\n")
+        
+        cat_string = ','.join(v[5])  #converts category from list to string format
+        cat_string=cat_string.replace("http","<http")
+        cat_string=cat_string.replace(",",">,")
+        if len(cat_string)>0:
+                cat_string+='>'
+
+        #print(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
+        output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
         if k[-1]!='.' and k[-1]!='?' and k[-1]!='!':
                 k1 = k.split(" ")[1]
         elif k[-1]=='.' or k[-1]=='?' or k[-1]=='!':
@@ -207,13 +231,17 @@ def main(argv):
         definition = "<"+abbrevString+"_Sense"+k1+">\n\tlemon:definition [\n\t\tlemon:value "+'"'+v[1]+'"@'+language+"\n\t] ;\n\t" #def
         if len(rdfType_string) > 0:
                 rdf_type = "rdf:type " + rdfType_string + " ;\n\t"		#instance types
-        label = 'rdfs:label "' + v[1] + '" ;\n\t'		#label					
-    	#category = "dcterms:subject " + cat + " ;\n\t"		#Categories
+        
+        label = 'rdfs:label "' + v[1] + '" ;\n\t'				#label					
+
+        if len(cat_string) > 0:
+                category = "dcterms:subject " + cat_string + " ;\n\t"		#Categories
+        
         if len(sameAs_string) > 0:
-                owl_sameAs = "owl:sameAs " + sameAs_string + " ;\n\t"	#interlanguage links containing "dbpedia"
+                owl_sameAs = "owl:sameAs " + sameAs_string + " ;\n\t"		#interlanguage links containing "dbpedia"
 
         ref = "lemon:reference " + v[2] + " ;\n\ta lemon:LexicalSense .\n\n"	#reference
-        sense = definition + rdf_type + label + owl_sameAs + ref	
+        sense = definition + rdf_type + label + category + owl_sameAs + ref	
         lemon.write(sense)
     output.close()
     lemon.close()
