@@ -75,7 +75,7 @@ def main(argv):
 
 	#below will make URL for different files to be downloaded
 	redirect = root+language+"/redirects_"+language+".ttl.bz2"
-	instance = root+language+"/instance_types_heuristic_"+language+".ttl.
+	instance = root+language+"/instance_types_heuristic_"+language+".ttl.bz2"
 	InterLang_Links = root+language+"/interlanguage_links_"+language+".ttl.bz2"
 	InterLang_Links_Chap = root+language+"/interlanguage_links_chapters_"+language+".ttl.bz2"
 	label = root+language+"/labels_"+language+".ttl.bz2"
