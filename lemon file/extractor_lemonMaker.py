@@ -201,7 +201,7 @@ def main(argv):
                                 string_to_write += "<" + temp_abbr.split(" ")[0] + "_Sense>, "
                 string_to_write = string_to_write[:-2]+' ;\n\ta lemon:LexicalEntry .\n\n<'+abbrevString+'_Form>\n\tlemon:writtenRep \"'+abbrevString+'\"@'+language+' ;\n\ta lemon:LexicalForm .\n\n'
                 lemon.write(string_to_write)
-        s1=input('Enter')
+        #s1=input('Enter')
         sameAs_string = ','.join(v[3])  #converts sameAs from list to string format
         sameAs_string=sameAs_string.replace("http","<http")
         sameAs_string=sameAs_string.replace(",",">,")
