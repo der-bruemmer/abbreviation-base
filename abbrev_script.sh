@@ -7,19 +7,19 @@
 #sparql select * where { <http://dbpedia.org/resource/BC> owl:sameAs ?s };
 language = "en"
 run downloader_extractor code
-python /home/akswadmin/abbrev_repo/Downloader_Extractor code/download_extract.py $language
+python /home/akswadmin/abbrev_repo/Downloader_Extractor\ code/download_extract.py $language
 echo "Files for $language downoaded successfully"
 echo "importing files\n"
-isql-vt 1111 dba dba << END
+isql-v 1111 dba dba << END
 sparql create graph <http://dbpedia.org/> ;
 ld_dir_all('/home/akswadmin/dbpedia_files/$language/data', '*.*', 'http://dbpedia.org');
 select * from DB.DBA.LOAD_LIST;
 rdf_loader_run(); 
 END
 echo "Files imported\nRunning lemon maker"
-python3 /home/akswadmin/abbrev_repo/lemon file/extractor_lemonMaker.py $language
+python3 /home/akswadmin/abbrev_repo/lemon\ file/extractor_lemonMaker.py $language
 echo "removing graph"
-isql-vt 1111 dba dba << END
+isql-v 1111 dba dba << END
 sparql CLEAR GRAPH <http://dbpedia.org/> ;
 END
 echo "removing folder"
