@@ -24,4 +24,4 @@ sparql CLEAR GRAPH <http://dbpedia.org/> ;
 END
 echo "removing folder"
 rm -r /home/akswadmin/dbpedia_files/$language
-echo "done"
+echo "done $language"
