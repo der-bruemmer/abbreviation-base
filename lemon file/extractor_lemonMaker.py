@@ -151,6 +151,8 @@ def main(argv):
         #meaning = uris[2][uris[2].rfind("/")+1:-1]
         #meaningURI = uris[2][1:-1]
         if "_" not in abbrev:
+            if abbrev.find('&nbsp')>0:
+                abbrev=abbrev.replace('&nbsp',"_")
             count+=1
             #value = [ meaning.replace("_"," "), uris[0][1:-1], meaningURI[1:-1]]
             #if "disambiguation" in meaning:
@@ -185,7 +187,7 @@ def main(argv):
         if temp in check_abbr:
                 continue
         check_abbr.append(temp)
-        temp=":"+re.sub("\.|\?|!","",temp)+"_Entry" #replaces .,? or !
+        temp=":"+temp+"_Entry" #replaces .,? or !
         entry_var += temp + ", "
     entry_var = "lemon:entry " + entry_var[:-2] + " .\n\n"
     lemon.write("\t"+entry_var)
