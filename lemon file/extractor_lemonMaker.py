@@ -205,7 +205,7 @@ def main(argv):
     for k,v in abbrevs.items():
         abbrevString = k.split(" ")[0]  #stores abbreviation in abbrevString
         if k[-1]=='.' or k[-1]=='?' or k[-1]=='!' or k.split(" ")[1]=='1':
-                string_to_write = ":"+abbrevString+"_Entry>\n\tlemon:form <"+abbrevString+"_Form> ;\n\tlemon:sense "
+                string_to_write = ":"+abbrevString+"_Entry\n\tlemon:form <"+abbrevString+"_Form> ;\n\tlemon:sense "
                 for temp_abbr,v1 in abbrevs.items():
                 	if temp_abbr.split(" ")[0]==abbrevString and (temp_abbr[-1]!='.' and temp_abbr[-1]!='?' and temp_abbr[-1]!='!'):
                                 string_to_write += "<" + temp_abbr.split(" ")[0] + "_Sense" + temp_abbr.split(" ")[1] + ">, "
