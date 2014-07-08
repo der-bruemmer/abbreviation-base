@@ -119,6 +119,16 @@ def getOriginalLanguageData(abbrev, uri):
         data = [uri[uri.rfind("/")+1:-1].replace("_"," "),uri,""]
         return data
 
+#function to convert array to string and append <>
+def urlFormat(array):
+    array_to_string = ""
+    for i in range(len(array)):
+        if i!=len(array)-1:
+            array_to_string += "<"+array[i]+">,"
+            continue;
+        array_to_string += "<"+array[i]+"> "
+    return array_to_string
+    
 def main(argv):
     global language
     language = argv[0]
@@ -204,28 +214,16 @@ def main(argv):
                 string_to_write = string_to_write[:-2]+' ;\n\ta lemon:LexicalEntry .\n\n<'+abbrevString+'_Form>\n\tlemon:writtenRep \"'+abbrevString+'\"@'+language+' ;\n\ta lemon:LexicalForm .\n\n'
                 lemon.write(string_to_write)
         #s1=input('Enter')
-        sameAs_string = ','.join(v[3])  #converts sameAs from list to string format
-        sameAs_string=sameAs_string.replace("http","<http")
-        sameAs_string=sameAs_string.replace(",",">,")
-        if len(sameAs_string)>0:
-        	sameAs_string+='>'
-        v[2]=v[2].replace("http","<http")
-        v[2]+='>'
+        sameAs_string = urlFormat(v[3])		#converts sameAs from list to string format
 
-        rdfType_string = ','.join(v[4])  #converts rdfType from list to string format
-        rdfType_string=rdfType_string.replace("http","<http")
-        rdfType_string=rdfType_string.replace(",",">,")
-        if len(rdfType_string)>0:
-                rdfType_string+='>'
+        rdfType_string = urlFormat(v[4])  #converts rdfType from list to string format
         
-        cat_string = ','.join(v[5])  #converts category from list to string format
-        cat_string=cat_string.replace("http","<http")
-        cat_string=cat_string.replace(",",">,")
-        if len(cat_string)>0:
-                cat_string+='>'
-
+        cat_string = urlFormat(v[5])  #converts category from list to string format
+        
+        v2= "<"+v[2]+">"
+        
         #print(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
-        output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
+        output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v2+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
         if k[-1]!='.' and k[-1]!='?' and k[-1]!='!':
                 k1 = k.split(" ")[1]
         elif k[-1]=='.' or k[-1]=='?' or k[-1]=='!':
@@ -242,7 +240,7 @@ def main(argv):
         if len(sameAs_string) > 0:
                 owl_sameAs = "owl:sameAs " + sameAs_string + " ;\n\t"		#interlanguage links containing "dbpedia"
 
-        ref = "lemon:reference " + v[2] + " ;\n\ta lemon:LexicalSense .\n\n"	#reference
+        ref = "lemon:reference " + v2 + " ;\n\ta lemon:LexicalSense .\n\n"	#reference
         sense = definition + rdf_type + label + category + owl_sameAs + ref	
         lemon.write(sense)
     output.close()
