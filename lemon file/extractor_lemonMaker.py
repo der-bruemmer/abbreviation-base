@@ -128,8 +128,6 @@ def urlFormat(array):
             #print array[i],"\na2s\n",array_to_string
             continue;
         array_to_string += "<"+array[i]+"> "
-    print(array_to_string)
-    s=input()
     return array_to_string
 
 
@@ -221,8 +219,6 @@ def main(argv):
                                 string_to_write += URI + temp_abbr.split(" ")[0] + "#sense>, "
                 string_to_write = string_to_write[:-2]+' ;\n\ta lemon:LexicalEntry .\n\n'+URI+abbrevString+'#form>\n\tlemon:writtenRep \"'+abbrevString+'\"@'+language+' ;\n\ta lemon:LexicalForm .\n\n'
                 lemon.write(string_to_write)
-        #s1=input('Enter')
-        
         
         sameAs_string = urlFormat(v[3])		#converts sameAs from list to string format
 
