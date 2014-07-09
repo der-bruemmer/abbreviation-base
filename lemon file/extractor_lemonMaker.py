@@ -15,6 +15,7 @@ import sys, getopt, os, collections
 from SPARQLWrapper import SPARQLWrapper, JSON
 import re
 global language
+
 def getDisambiguations(abbrev, uri):
     global language
     query = "select distinct ?o, (str(?name) AS ?label), ?name where {"+uri+" <http://dbpedia.org/ontology/wikiPageDisambiguates> ?o. ?o <http://www.w3.org/2000/01/rdf-schema#label> ?name.FILTER(langMatches(lang(?name), \""+language.upper()+"\")) }"
@@ -119,19 +120,24 @@ def getOriginalLanguageData(abbrev, uri):
         data = [uri[uri.rfind("/")+1:-1].replace("_"," "),uri,""]
         return data
 
-#function to convert array to string and append <>
 def urlFormat(array):
     array_to_string = ""
     for i in range(len(array)):
         if i!=len(array)-1:
             array_to_string += "<"+array[i]+">,"
+            #print array[i],"\na2s\n",array_to_string
             continue;
         array_to_string += "<"+array[i]+"> "
+    print(array_to_string)
+    s=input()
     return array_to_string
-    
+
+
 def main(argv):
     global language
     language = argv[0]
+    #in_directory = './DBpedia/'
+    #out_directory = './'+language
     in_directory = '/home/akswadmin/dbpedia_files/'
     out_directory = '/home/akswadmin/abbrev_extracted/'+language
     if not os.path.exists(out_directory):
@@ -150,19 +156,20 @@ def main(argv):
     count = 0
     count_line=0
     for line in input_file:
-        """if count_line == 2:
+        """if count_line == 1:
             break
         count_line+=1"""
         uris = line.split(" ")		#splits the triple and stores is as list
         abbrev = uris[0][uris[0].rfind("resource/")+9:-1]    #stores abbreviation
-        #print(uris)
+        print(uris)
         if abbrev.endswith("..."):
             continue
         #meaning = uris[2][uris[2].rfind("/")+1:-1]
         #meaningURI = uris[2][1:-1]
         if "_" not in abbrev:
+
             if abbrev.find('&nbsp')>0:
-                abbrev=abbrev.replace('&nbsp',"_")
+                    abbrev=abbrev.replace('&nbsp',"_")
             count+=1
             #value = [ meaning.replace("_"," "), uris[0][1:-1], meaningURI[1:-1]]
             #if "disambiguation" in meaning:
@@ -197,7 +204,7 @@ def main(argv):
         if temp in check_abbr:
                 continue
         check_abbr.append(temp)
-        temp=":"+temp+"_Entry" #replaces .,? or !
+        temp="<http://nlp.dbpedia.org/abbrevbase/lexicon/en/entry/"+temp+">"
         entry_var += temp + ", "
     entry_var = "lemon:entry " + entry_var[:-2] + " .\n\n"
     lemon.write("\t"+entry_var)
@@ -205,15 +212,18 @@ def main(argv):
     for k,v in abbrevs.items():
         abbrevString = k.split(" ")[0]  #stores abbreviation in abbrevString
         if k[-1]=='.' or k[-1]=='?' or k[-1]=='!' or k.split(" ")[1]=='1':
-                string_to_write = ":"+abbrevString+"_Entry\n\tlemon:form <"+abbrevString+"_Form> ;\n\tlemon:sense "
+                URI = "<http://nlp.dbpedia.org/abbrevbase/lexicon/"+language+"/entry/"
+                string_to_write = URI+abbrevString+">\n\tlemon:form "+URI+abbrevString+"#form> ;\n\tlemon:sense "
                 for temp_abbr,v1 in abbrevs.items():
                 	if temp_abbr.split(" ")[0]==abbrevString and (temp_abbr[-1]!='.' and temp_abbr[-1]!='?' and temp_abbr[-1]!='!'):
-                                string_to_write += "<" + temp_abbr.split(" ")[0] + "_Sense" + temp_abbr.split(" ")[1] + ">, "
+                                string_to_write += URI + temp_abbr.split(" ")[0] + "#sense" + temp_abbr.split(" ")[1] + ">, "
                 	elif temp_abbr.split(" ")[0]==abbrevString and (temp_abbr[-1]=='.' or temp_abbr[-1]=='?' or temp_abbr[-1]=='!'):
-                                string_to_write += "<" + temp_abbr.split(" ")[0] + "_Sense>, "
-                string_to_write = string_to_write[:-2]+' ;\n\ta lemon:LexicalEntry .\n\n<'+abbrevString+'_Form>\n\tlemon:writtenRep \"'+abbrevString+'\"@'+language+' ;\n\ta lemon:LexicalForm .\n\n'
+                                string_to_write += URI + temp_abbr.split(" ")[0] + "#sense>, "
+                string_to_write = string_to_write[:-2]+' ;\n\ta lemon:LexicalEntry .\n\n'+URI+abbrevString+'#form>\n\tlemon:writtenRep \"'+abbrevString+'\"@'+language+' ;\n\ta lemon:LexicalForm .\n\n'
                 lemon.write(string_to_write)
         #s1=input('Enter')
+        
+        
         sameAs_string = urlFormat(v[3])		#converts sameAs from list to string format
 
         rdfType_string = urlFormat(v[4])  #converts rdfType from list to string format
@@ -221,14 +231,15 @@ def main(argv):
         cat_string = urlFormat(v[5])  #converts category from list to string format
         
         v2= "<"+v[2]+">"
-        
+        #print(sameAs_string,"\n\n\n",rdfType_string,"\n\n\n",cat_string)
+        #s=input()
         #print(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
         output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v2+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
         if k[-1]!='.' and k[-1]!='?' and k[-1]!='!':
                 k1 = k.split(" ")[1]
         elif k[-1]=='.' or k[-1]=='?' or k[-1]=='!':
                 k1 = ""
-        definition = "<"+abbrevString+"_Sense"+k1+">\n\tlemon:definition [\n\t\tlemon:value "+'"'+v[1]+'"@'+language+"\n\t] ;\n\t" #def
+        definition = URI+abbrevString+"#sense"+k1+">\n\tlemon:definition [\n\t\tlemon:value "+'"'+v[1]+'"@'+language+"\n\t] ;\n\t" #def
         if len(rdfType_string) > 0:
                 rdf_type = "rdf:type " + rdfType_string + " ;\n\t"		#instance types
         
@@ -248,3 +259,4 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
+
