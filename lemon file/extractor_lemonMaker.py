@@ -150,8 +150,13 @@ def main(argv):
     input_file = open(infile,'r')
     output = open(outfile,'w')
     lemon = open(lemon_file,'w')
+<<<<<<< HEAD
     TTLFile = open(testTtl,"a") #-------------------------------------TESTS-----------------------
     TSVFile = open(testTsv,"a") #----------------------------------------TEST-------------------------------
+=======
+    TTLFile = open(testTtl,"w") #-------------------------------------TESTS-----------------------
+    TSVFile = open(testTsv,"w") #----------------------------------------TEST-------------------------------
+>>>>>>> 551622632d070253e3ee8c7128c8eada794bf6ea
     abbrevs = collections.OrderedDict()
     output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\n")
     lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n\n")
@@ -160,12 +165,24 @@ def main(argv):
     count_line=0
     flag=0
     for line in input_file:
+<<<<<<< HEAD
         if count_line>=11000:
             break 
         count_line+=1
         uris = line.split(" ")		#splits the triple and stores is as list
         abbrev = uris[0][uris[0].rfind("resource/")+9:-1]    #stores abbreviation
         print(uris)
+=======
+        """if count_line<52000:
+            #print(count_line)
+            count_line+=1
+            continue
+        count_line+=1"""
+        uris = line.split(" ")		#splits the triple and stores is as list
+        abbrev = uris[0][uris[0].rfind("resource/")+9:-1]    #stores abbreviation
+        #if count_line%1000 == 0:
+            #print(count_line,": ",uris)
+>>>>>>> 551622632d070253e3ee8c7128c8eada794bf6ea
         TTLFile.write(' '.join(uris)) #write uri -------------------------------TEST--------------------------------------
         TTLFile.close()
         TTLFile = open(testTtl,"a")
@@ -259,6 +276,7 @@ def main(argv):
         v2= "<"+v[2]+">"
         #print(sameAs_string,"\n\n\n",rdfType_string,"\n\n\n",cat_string)
         #s=input()
+<<<<<<< HEAD
         tsv = (abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
         TSVFile.write(tsv)
         TSVFile.close()
@@ -274,6 +292,23 @@ def main(argv):
         except:
                 print(tsv,"\n")
                 print("v[1]: ",type(v[1]),"\nv[2]: ",type(v2),"\n",type(abbrevString),"\n",type(sameAs_string),"\n",type(rdfType_string),"\n",type(cat_string))
+=======
+        tsv = abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n"
+        TSVFile.write(tsv)
+        TSVFile.close()
+        TSVFile = open(testTsv,"a")
+        try:
+                #print("in try")
+                output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v2+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
+                output.close()
+                output = open(outfile,"a")
+                #print(tsv,"\n")
+        except:
+
+                print(tsv,"\n")
+                print("v[1]: ",type(v[1]),"\nv[2]: ",type(v2),"\n",type(abbrevString),"\n",type(sameAs_string),"\n",type(rdfType_string),"\n",type(cat_string))
+              
+>>>>>>> 551622632d070253e3ee8c7128c8eada794bf6ea
         if k[-1]!='.' and k[-1]!='?' and k[-1]!='!':
                 k1 = k.split(" ")[1]
         elif k[-1]=='.' or k[-1]=='?' or k[-1]=='!':
@@ -281,6 +316,11 @@ def main(argv):
         #v[1]=str(v[1])
         v[1]=v[1].replace('"',"'")
         definition = URI+abbrevString+"#sense"+k1+">\n\tlemon:definition [\n\t\tlemon:value "+'"'+v[1]+'"@'+language+"\n\t] ;\n\t" #def
+        rdf_type = ""
+        label = ""
+        category = ""
+        owl_sameAs = ""
+        ref = ""
         if len(rdfType_string) > 0:
                 rdf_type = "rdf:type " + rdfType_string + " ;\n\t"		#instance types
         
