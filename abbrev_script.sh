@@ -22,7 +22,7 @@ ld_dir_all('/home/akswadmin/dbpedia_files/$language/data', '*.*', 'http://dbpedi
 select * from DB.DBA.LOAD_LIST;
 rdf_loader_run(); 
 END
-echo "---------------Files imported---------------">>server_report
+echo "---------------Files imported--------------">>server_report
 echo "-----------------Running lemon maker-----------------">>server_report
 python3 /home/akswadmin/abbrev_repo/lemon\ file/extractor_lemonMaker.py $language
 echo "---------------Removing graph---------------">>server_report
@@ -38,4 +38,3 @@ DIFF=$(( $END - $START ))
 echo "$language took $DIFF seconds">>server_report
 echo "======================================================================================================">>server_report
 done
-
