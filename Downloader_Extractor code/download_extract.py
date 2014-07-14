@@ -92,7 +92,7 @@ def main(argv):
 	#5. labels
 	#6. article_categories
 	#7. disambiguations
-
+	
 	f=download_file(redirect,1)
 		
 	f=download_file(instance)
