@@ -18,6 +18,8 @@ global language
 
 
 def getDisambiguations(abbrev, uri):
+    #print("Disam ",uri)
+    #s=input()
     global language
     query = "select distinct ?o, (str(?name) AS ?label), ?name where {"+uri+" <http://dbpedia.org/ontology/wikiPageDisambiguates> ?o. ?o <http://www.w3.org/2000/01/rdf-schema#label> ?name.FILTER(langMatches(lang(?name), \""+language.upper()+"\")) }"
     sparql = SPARQLWrapper("http://dbpedia.org/sparql")
@@ -142,7 +144,7 @@ def main(argv):
     if not os.path.exists(out_directory):
         os.makedirs(out_directory)
     
-    infile = in_directory+language+'/data/redirects_en.ttl'  #location of input file
+    infile = in_directory+language+'/data/redirects_'+language+'.ttl'  #location of input file
     outfile = out_directory+'/abbreviation_tsv_'+language+'.txt'  #output file
     lemon_file = out_directory+'/abbreviation_lemon_'+language+'.ttl'  #lemon file
     testTtl = out_directory+"/test.ttl" #test file
@@ -150,13 +152,8 @@ def main(argv):
     input_file = open(infile,'r')
     output = open(outfile,'w')
     lemon = open(lemon_file,'w')
-<<<<<<< HEAD
-    TTLFile = open(testTtl,"a") #-------------------------------------TESTS-----------------------
-    TSVFile = open(testTsv,"a") #----------------------------------------TEST-------------------------------
-=======
     TTLFile = open(testTtl,"w") #-------------------------------------TESTS-----------------------
     TSVFile = open(testTsv,"w") #----------------------------------------TEST-------------------------------
->>>>>>> 551622632d070253e3ee8c7128c8eada794bf6ea
     abbrevs = collections.OrderedDict()
     output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\n")
     lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n\n")
@@ -165,24 +162,23 @@ def main(argv):
     count_line=0
     flag=0
     for line in input_file:
-<<<<<<< HEAD
-        if count_line>=11000:
-            break 
-        count_line+=1
-        uris = line.split(" ")		#splits the triple and stores is as list
-        abbrev = uris[0][uris[0].rfind("resource/")+9:-1]    #stores abbreviation
-        print(uris)
-=======
-        """if count_line<52000:
+        #if line.find("A.T.U.")>0:
             #print(count_line)
-            count_line+=1
-            continue
-        count_line+=1"""
-        uris = line.split(" ")		#splits the triple and stores is as list
+            #count_line+=1
+            #break
+        count_line+=1
+        #pos1=line.find('<http://)
+        #pos2=line.find('dbpedia',pos1)
+        #line=line[0:pos1+8]+line[pos2+1:]
+        #print(line)
+        #s=input()
+        uris = line.split(" ")
+        pos1 = uris[2].find("<http://"+language)+8
+        pos2 = uris[2].find("dbpedia",pos1)
+        uris[2] = uris[2][0:pos1]+uris[2][pos2:]		#splits the triple and stores is as list
         abbrev = uris[0][uris[0].rfind("resource/")+9:-1]    #stores abbreviation
-        #if count_line%1000 == 0:
-            #print(count_line,": ",uris)
->>>>>>> 551622632d070253e3ee8c7128c8eada794bf6ea
+        if count_line%1000 == 0:
+            print(count_line,": ",uris)
         TTLFile.write(' '.join(uris)) #write uri -------------------------------TEST--------------------------------------
         TTLFile.close()
         TTLFile = open(testTtl,"a")
@@ -201,6 +197,7 @@ def main(argv):
             count+=1
             #value = [ meaning.replace("_"," "), uris[0][1:-1], meaningURI[1:-1]]
             #if "disambiguation" in meaning:
+            #print("----->",abbrev,"------>",uris[2])
             values = getDisambiguations(abbrev, uris[2])
             #___print("values ",values)
 
@@ -276,24 +273,7 @@ def main(argv):
         v2= "<"+v[2]+">"
         #print(sameAs_string,"\n\n\n",rdfType_string,"\n\n\n",cat_string)
         #s=input()
-<<<<<<< HEAD
-        tsv = (abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
-        TSVFile.write(tsv)
-        TSVFile.close()
-        TSVFile = open(testTsv,"a")
-        if type(v[1])=="tuple":
-                v[1]=''.join(v[1])
-        if type(v2)=="tuple":
-                v2=''.join(v2)
-        try:
-                output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v2+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
-                output.close()
-                output = (outfile,"a")
-        except:
-                print(tsv,"\n")
-                print("v[1]: ",type(v[1]),"\nv[2]: ",type(v2),"\n",type(abbrevString),"\n",type(sameAs_string),"\n",type(rdfType_string),"\n",type(cat_string))
-=======
-        tsv = abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v[2]+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n"
+        tsv = abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v2+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n"
         TSVFile.write(tsv)
         TSVFile.close()
         TSVFile = open(testTsv,"a")
@@ -308,7 +288,6 @@ def main(argv):
                 print(tsv,"\n")
                 print("v[1]: ",type(v[1]),"\nv[2]: ",type(v2),"\n",type(abbrevString),"\n",type(sameAs_string),"\n",type(rdfType_string),"\n",type(cat_string))
               
->>>>>>> 551622632d070253e3ee8c7128c8eada794bf6ea
         if k[-1]!='.' and k[-1]!='?' and k[-1]!='!':
                 k1 = k.split(" ")[1]
         elif k[-1]=='.' or k[-1]=='?' or k[-1]=='!':

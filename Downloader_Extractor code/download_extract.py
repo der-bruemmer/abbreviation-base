@@ -9,12 +9,16 @@ global language
 
 #this function downloads the files and shows the progress bar as per the file being downloaded
 def download_file(url,abbrevFile=0):
+	global language
 	file_name = url.split('/')[-1]
 	u = urllib2.urlopen(url)
-	if os.path.isfile(file_name):
+	directory = '/home/akswadmin/dbpedia_files/'+language+'/'
+	if not os.path.exists(directory):
+		os.makedirs(directory)	
+	if os.path.isfile(directory+file_name):
 		print file_name," already exists"
 		return file_name
-	f = open(file_name, 'wb')
+	f = open(directory+file_name, 'wb')
 	meta = u.info()
 	file_size = int(meta.getheaders("Content-Length")[0])
 	print "Downloading: %s Bytes: %s" % (file_name, file_size)
@@ -33,21 +37,20 @@ def download_file(url,abbrevFile=0):
 	    print status,
 	f.close()
 	print file_name, "downloaded successfully..."
-	decompress(file_name,abbrevFile)
+	decompress(directory,file_name,abbrevFile)
 	return file_name
 
-def decompress(file_name,abbrevFile=0):
+def decompress(location,file_name,abbrevFile):
 	global language
-	location = '/home/akswadmin/dbpedia_files/'
 	new_file = file_name.replace(".bz2",'')	
-	directory= location+language+"/data"  #makes a new dirctory like for french fr/data, this will store extracted data
+	directory= location+"data/"  #makes a new dirctory like for french fr/data, this will store extracted data
 	
 	#if dirctory doesnot exists then make it
 	if not os.path.exists(directory):
     		os.makedirs(directory)	
 	
-	temp = open(directory+"/"+new_file,"w")
-	bz_file = os.popen('bzip2 -cd ' + file_name) #to read compressed file
+	temp = open(directory+new_file,"w")
+	bz_file = os.popen('bzip2 -cd ' + location+file_name) #to read compressed file
 	line_list = bz_file.readlines()
 	
 	#here we download abbreviations ending with .,! or ? but this is only in redirects, which contains all the abbreviations 
@@ -55,9 +58,9 @@ def decompress(file_name,abbrevFile=0):
 
 	if abbrevFile:
 		for line in line_list :
-			obj=re.match(r'<http://dbpedia.org/resource/.*[\?!\.]> <.*> <.*>',line)
+			obj=re.match(r'<http://.*dbpedia.org/resource/.*[\?!\.]> <.*> <.*>',line)
 			if obj:
-				#print line
+				#print "-------",line
 				temp.write(line)
 	else:
 		for line in line_list :
@@ -82,8 +85,9 @@ def main(argv):
 	category = root+language+"/article_categories_"+language+".ttl.bz2"
 	disambiguation = root+language+"/disambiguations_"+language+".ttl.bz2"
 	
+	server=open("file_not_available.txt","a")
 	#dwn=open("download_time.txt","w") #file to store time take by each file to download and decomress
-
+	server.write("------------ Language: "+language+"--------------------\n")
 	#downloaded 7 files namely:
 	#1. redirects- contains abbreviations
 	#2. instance_types_heuristic
@@ -92,20 +96,36 @@ def main(argv):
 	#5. labels
 	#6. article_categories
 	#7. disambiguations
-	
-	f=download_file(redirect,1)
-		
-	f=download_file(instance)
-		
-	f=download_file(InterLang_Links)
-		
-	f=download_file(InterLang_Links_Chap)	
-		
-	f=download_file(label)
-		
-	f=download_file(category)	
-		
-	f=download_file(disambiguation)
-	
+	try:
+		f=download_file(redirect,1)
+	except:
+		server.write("/redirects_"+language+".ttl.bz2\n")
+	try:
+		f=download_file(instance)
+	except:
+		server.write("/instance_types_heuristic_"+language+".ttl.bz2\n")
+	try:
+		f=download_file(InterLang_Links)
+	except:
+		server.write("/interlanguage_links_"+language+".ttl.bz2\n")
+	try:
+		f=download_file(InterLang_Links_Chap)	
+	except:
+		server.write("/interlanguage_links_chapters_"+language+".ttl.bz2\n")
+	try:
+		f=download_file(label)
+	except:
+		server.write("/labels_"+language+".ttl.bz2\n")
+	try:	
+		f=download_file(category)	
+	except:
+		server.write("/article_categories_"+language+".ttl.bz2\n")
+	try:	
+		f=download_file(disambiguation)
+	except:
+		server.write("/disambiguations_"+language+".ttl.bz2\n")
+
+	server.close()
+
 if __name__ == "__main__":
     main(sys.argv[1:])
