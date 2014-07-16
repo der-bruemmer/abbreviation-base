@@ -17,7 +17,7 @@ def download_file(url,abbrevFile=0):
 		os.makedirs(directory)	
 	if os.path.isfile(directory+file_name):
 		print file_name," already exists"
-		return file_name
+		decompress(directory,file_name,abbrevFile)
 	f = open(directory+file_name, 'wb')
 	meta = u.info()
 	file_size = int(meta.getheaders("Content-Length")[0])
@@ -42,6 +42,8 @@ def download_file(url,abbrevFile=0):
 
 def decompress(location,file_name,abbrevFile):
 	global language
+        print("-------------------decompressing----------------")
+        #s=raw_input()
 	new_file = file_name.replace(".bz2",'')	
 	directory= location+"data/"  #makes a new dirctory like for french fr/data, this will store extracted data
 	

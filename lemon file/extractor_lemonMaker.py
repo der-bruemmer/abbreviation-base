@@ -22,15 +22,20 @@ def getDisambiguations(abbrev, uri):
     #s=input()
     global language
     query = "select distinct ?o, (str(?name) AS ?label), ?name where {"+uri+" <http://dbpedia.org/ontology/wikiPageDisambiguates> ?o. ?o <http://www.w3.org/2000/01/rdf-schema#label> ?name.FILTER(langMatches(lang(?name), \""+language.upper()+"\")) }"
-    sparql = SPARQLWrapper("http://dbpedia.org/sparql")
+    if language!='en':
+        endpoint = "http://"+language+".dbpedia.org/sparql"
+    else:
+        endpoint =" http://dbpedia.org/sparql"
+    sparql = SPARQLWrapper(endpoint)
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     try:
         results = sparql.query().convert()
         abbrevs = collections.OrderedDict()
         count=1
+        count_AA=1
         for result in results["results"]["bindings"]:
-
+            #s=input()
             #fetch sameAs result for each disambiguation
             query_sameAs = 'select ?lang where {<'+result["o"]["value"]+'> owl:sameAs ?lang. filter(contains(STR(?lang),"dbpedia"))}' 
             sparql.setQuery(query_sameAs)
@@ -162,20 +167,23 @@ def main(argv):
     count_line=0
     flag=0
     for line in input_file:
-        #if line.find("A.T.U.")>0:
-            #print(count_line)
-            #count_line+=1
+        #if line.find("A._A."):
+            #print(count_line,line)
             #break
+        #else:
+            #continue
+            #count_line+=1
+            
         count_line+=1
-        #pos1=line.find('<http://)
+        #pos1=line.find('<http://')
         #pos2=line.find('dbpedia',pos1)
         #line=line[0:pos1+8]+line[pos2+1:]
         #print(line)
         #s=input()
         uris = line.split(" ")
-        pos1 = uris[2].find("<http://"+language)+8
-        pos2 = uris[2].find("dbpedia",pos1)
-        uris[2] = uris[2][0:pos1]+uris[2][pos2:]		#splits the triple and stores is as list
+        #pos1 = uris[2].find("<http://"+language)+8
+        #pos2 = uris[2].find("dbpedia",pos1)
+        #uris[2] = uris[2][0:pos1]+uris[2][pos2:]		#splits the triple and stores is as list
         abbrev = uris[0][uris[0].rfind("resource/")+9:-1]    #stores abbreviation
         if count_line%1000 == 0:
             print(count_line,": ",uris)
@@ -184,22 +192,20 @@ def main(argv):
         TTLFile = open(testTtl,"a")
         if abbrev.endswith("..."):
             continue
-        """if abbrev != "O.J.":
-            continue
-        if abbrev == "O.J.":
-            flag=1"""
-        #meaning = uris[2][uris[2].rfind("/")+1:-1]
-        #meaningURI = uris[2][1:-1]
+        meaning = uris[2][uris[2].rfind("/")+1:-1]
+        meaningURI = uris[2]
+         
         if "_" not in abbrev:
-
             if abbrev.find('&nbsp')>0:
                     abbrev=abbrev.replace('&nbsp',"_")
             count+=1
-            #value = [ meaning.replace("_"," "), uris[0][1:-1], meaningURI[1:-1]]
+            value = [uris[0][1:-1],meaning.replace("_"," "),meaningURI[1:-1]]
             #if "disambiguation" in meaning:
-            #print("----->",abbrev,"------>",uris[2])
+            #print("getDisamb",abbrev,"------>",uris[2])
             values = getDisambiguations(abbrev, uris[2])
             #___print("values ",values)
+            #if abbrev=="A.A.S.R.":
+                #print(values,"----",len(values))
 
             if len(values) > 0:
                 for k,v in values.items():
@@ -210,14 +216,18 @@ def main(argv):
 
             else:
                 if abbrev not in abbrevs:
-                    #print ("here")
+                    #print ("----> ",uris[2])
                     #s1=input("enter")
                     data = getOriginalLanguageData(abbrev, uris[2][1:-1])
-                    #print(data)
+                    #if abbrev=="A.A.S.R.":
+                        #print("----------data-----------",data,"\nlen",len(data))
                     if len(data) > 0:
                         abbrevs[abbrev] = data
                         abbrevs[abbrev].insert(0,uris[0][1:-1])		#inserts the original link in the dictionary at pos 0
                         #print(abbrev,"\t----no disamb-----",abbrevs[abbrev])
+                    else:
+                        abbrevs[abbrev]= value
+                        
                 else:
                     print("already in " + abbrev +" " + uris[0])
                     abbrevs[abbrev][0] = abbrevs[abbrev][0] + " | " + meaning
@@ -271,7 +281,7 @@ def main(argv):
         except IndexError:
                 cat_string = ""
         v2= "<"+v[2]+">"
-        #print(sameAs_string,"\n\n\n",rdfType_string,"\n\n\n",cat_string)
+        #print(abbrevString+"\t"+v[1]+"\t"+v2+"\n")
         #s=input()
         tsv = abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v2+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n"
         TSVFile.write(tsv)
