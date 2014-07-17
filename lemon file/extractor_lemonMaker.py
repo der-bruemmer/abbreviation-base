@@ -14,6 +14,8 @@
 import sys, getopt, os, collections 
 from SPARQLWrapper import SPARQLWrapper, JSON
 import re
+import urllib.parse
+
 global language
 
 
@@ -22,20 +24,20 @@ def getDisambiguations(abbrev, uri):
     #s=input()
     global language
     query = "select distinct ?o, (str(?name) AS ?label), ?name where {"+uri+" <http://dbpedia.org/ontology/wikiPageDisambiguates> ?o. ?o <http://www.w3.org/2000/01/rdf-schema#label> ?name.FILTER(langMatches(lang(?name), \""+language.upper()+"\")) }"
-    if language!='en':
+    """if language!='en':
         endpoint = "http://"+language+".dbpedia.org/sparql"
     else:
-        endpoint =" http://dbpedia.org/sparql"
-    sparql = SPARQLWrapper(endpoint)
+        endpoint ="http://dbpedia.org/sparql"""
+    #sparql = SPARQLWrapper(endpoint)
+    sparql = SPARQLWrapper("http://localhost:8890/sparql")
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     try:
         results = sparql.query().convert()
         abbrevs = collections.OrderedDict()
         count=1
-        count_AA=1
+        #count_AA=1
         for result in results["results"]["bindings"]:
-            #s=input()
             #fetch sameAs result for each disambiguation
             query_sameAs = 'select ?lang where {<'+result["o"]["value"]+'> owl:sameAs ?lang. filter(contains(STR(?lang),"dbpedia"))}' 
             sparql.setQuery(query_sameAs)
@@ -87,7 +89,12 @@ def getDisambiguations(abbrev, uri):
 def getOriginalLanguageData(abbrev, uri):
     global language
     query = "select distinct (str(?name) AS ?label), ?name, (str(?abstract) AS ?en_abstr) where {<"+uri+"> <http://www.w3.org/2000/01/rdf-schema#label> ?name.FILTER(langMatches(lang(?name), \""+language.upper()+"\")) }"
-    sparql = SPARQLWrapper("http://dbpedia.org/sparql")
+    """if language!='en':
+        endpoint = "http://"+language+".dbpedia.org/sparql"
+    else:
+        endpoint =" http://dbpedia.org/sparql"""
+    #sparql = SPARQLWrapper(endpoint)
+    sparql = SPARQLWrapper("http://localhost:8890/sparql")
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
     try:
@@ -153,7 +160,7 @@ def main(argv):
     outfile = out_directory+'/abbreviation_tsv_'+language+'.txt'  #output file
     lemon_file = out_directory+'/abbreviation_lemon_'+language+'.ttl'  #lemon file
     testTtl = out_directory+"/test.ttl" #test file
-    testTsv = out_directory+"/testTsv.txt" #test file for tsv
+    testTsv = out_directory+"/abbreviation_tsv_"+language+'_IBM.txt' #test file for tsv
     input_file = open(infile,'r')
     output = open(outfile,'w')
     lemon = open(lemon_file,'w')
@@ -161,6 +168,7 @@ def main(argv):
     TSVFile = open(testTsv,"w") #----------------------------------------TEST-------------------------------
     abbrevs = collections.OrderedDict()
     output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\n")
+    output.write("Abbreviation\tDefinition\tReference Link\trdf:type\n")
     lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n\n")
     lemon.write('\n<http://nlp.dbpedia.org/abbrevbase/lexicon/'+language+'>\n a lemon:Lexicon ;\n\tlemon:language "'+language+'" ;\n')
     count = 0
@@ -173,7 +181,8 @@ def main(argv):
         #else:
             #continue
             #count_line+=1
-            
+        if "%3F" in line:
+            line = urllib.parse.unquote(line)
         count_line+=1
         #pos1=line.find('<http://')
         #pos2=line.find('dbpedia',pos1)
@@ -190,12 +199,12 @@ def main(argv):
         TTLFile.write(' '.join(uris)) #write uri -------------------------------TEST--------------------------------------
         TTLFile.close()
         TTLFile = open(testTtl,"a")
-        if abbrev.endswith("..."):
+        if abbrev.endswith("...") or ":" in abbrev:
             continue
         meaning = uris[2][uris[2].rfind("/")+1:-1]
         meaningURI = uris[2]
          
-        if "_" not in abbrev:
+        if "_" not in abbrev and len(abbrev)>2:
             if abbrev.find('&nbsp')>0:
                     abbrev=abbrev.replace('&nbsp',"_")
             count+=1
@@ -281,14 +290,28 @@ def main(argv):
         except IndexError:
                 cat_string = ""
         v2= "<"+v[2]+">"
-        #print(abbrevString+"\t"+v[1]+"\t"+v2+"\n")
+        v2_wiki = "<http://"+language+".wikipedia.org/wiki/"+ v2[v2.rfind("resource/")+9:]
+        #print(len(sameAs_string),"\t",len(rdfType_string),"\t",len(cat_string))
         #s=input()
-        tsv = abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v2+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n"
+        if "%3F" in sameAs_string:
+            sameAs_string = urllib.parse.unquote(sameAs_string)
+        if "%3F" in rdfType_string:
+            rdfType_string = urllib.parse.unquote(rdfType_string)
+        if "%3F" in cat_string:
+            cat_string = urllib.parse.unquote(cat_string)
+        #print(len(sameAs_string),"\t",len(rdfType_string),"\t",len(cat_string))
+        #s=input()
+
+        """tsv = abbrevString+"\t"+v[1]+"\t"+v2_wiki+"\t"+rdfType_string"\n"
         TSVFile.write(tsv)
         TSVFile.close()
-        TSVFile = open(testTsv,"a")
+        TSVFile = open(testTsv,"a")"""
         try:
                 #print("in try")
+                tsv = abbrevString+"\t"+v[1]+"\t"+v2_wiki+"\t"+rdfType_string+"\n"
+                TSVFile.write(tsv)
+                TSVFile.close()
+                TSVFile = open(testTsv,"a")
                 output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v2+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
                 output.close()
                 output = open(outfile,"a")
@@ -327,6 +350,7 @@ def main(argv):
         lemon = open(lemon_file,"a")
     output.close()
     lemon.close()
+    TSVFile.close()
 
 if __name__ == "__main__":
     main(sys.argv[1:])
