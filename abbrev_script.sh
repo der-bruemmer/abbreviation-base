@@ -7,7 +7,10 @@
 echo "____Server Running Report_____">>server_report
 	#languages=("af" "als" "am" "an" "ar" "arz" "ast" "az" "ba" "bat_smg" "be" "be_x_old" "bg" "bn" "bpy" "br" "bs" "bug" "ca" "ceb" "ckb" "cs" "cv" "cy" "da" "de" "el" "en" "eo" "es" "et" "eu" "fa" "fi" "fr" "fy" "ga" "gd" "gl" "gu" "he" "hi" "hif" "hr" "ht" "hu" "hy" "ia" "id" "io" "is" "it" "ja" "jv" "ka" "kk" "kn" "ko" "ku" "ky" "la" "lb" "links" "lmo" "lt" "lv" "map_bms" "mg" "mk" "ml" "mr" "ms" "my" "mzn" "nap" "nds" "ne" "new" "nl" "nn" "no" "oc" "pl" "pms" "pnb" "pt" "qu" "ro" "ru" "scn" "sco" "sh" "simple" "sk" "sl" "sq" "sr" "su" "sv" "sw" "ta" "te" "tg" "th" "tl" "tr" "tt" "uk" "ur" "uz" "vec" "vi" "vo" "wa" "war" "wikidata" "yi" "yo" "zh" "zh_min_nan" "zh_yue")
 echo "temp_file">>temp_file
-languages=("nn" "sl" "fi")
+#languages=("de" "fr" "nl" "es" "it" "ru" "cs" "pl" "sv" "da" "et" "pt" "no" "nn" "sl" "fi")
+#languages=("af" "als" "am" "an" "ar" "arz" "ast" "az")
+#languages=("ba" "bat_smg" "be_x_old" "bg" "bn" "bpy" "br" "bs" "bug" "ca" "ceb" "ckb" "cv" "cy" "el" "eo" "eu" "fa" "fy" "ga" "gd" "gl" "gu" "he" "hi" "hif" "hr" "ht" "hu" "hy" "ia" "id" "io" "is" "ja" "jv" "ka" "kk" "kn" "ko" "ku" "ky" "la" "lb" "lmo" "lt" "lv" "map_bms" "mg" "mk" "ml" "mr" "ms" "my" "mzn" "nap" "nds" "ne" "new" "oc" "pms" "pnb" "qu" "ro" "scn" "sco" "sh" "simple" "sk" "sq" "sr" "su" "sw" "ta" "te" "tg" "th" "tl" "tr" "tt" "uk" "ur" "uz" "vec" "vi" "vo" "wa" "war" "yi" "yo" "zh" "zh_min_nan" "zh_yue")
+languages=("ro" "sh" "simple" "sk" "sr" "ta" "th" "uz" "vi" "war")
 for language in "${languages[@]}"
 do
 START=$(date +%s)

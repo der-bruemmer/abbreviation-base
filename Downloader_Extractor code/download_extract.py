@@ -80,7 +80,8 @@ def main(argv):
 
 	#below will make URL for different files to be downloaded
 	redirect = root+language+"/redirects_"+language+".ttl.bz2"
-	instance = root+language+"/instance_types_heuristic_"+language+".ttl.bz2"
+	instance1 = root+language+"/instance_types_heuristic_"+language+".ttl.bz2"
+        instance2 = root+language+"/instance_types_"+language+".ttl.bz2"
 	InterLang_Links = root+language+"/interlanguage_links_"+language+".ttl.bz2"
 	InterLang_Links_Chap = root+language+"/interlanguage_links_chapters_"+language+".ttl.bz2"
 	label = root+language+"/labels_"+language+".ttl.bz2"
@@ -103,9 +104,14 @@ def main(argv):
 	except:
 		server.write("/redirects_"+language+".ttl.bz2\n")
 	try:
-		f=download_file(instance)
+		f=download_file(instance1)
 	except:
 		server.write("/instance_types_heuristic_"+language+".ttl.bz2\n")
+	try:
+                f=download_file(instance2)
+        except:
+                server.write("/instance_types_heuristic_"+language+".ttl.bz2\n")
+
 	try:
 		f=download_file(InterLang_Links)
 	except:
@@ -126,7 +132,7 @@ def main(argv):
 		f=download_file(disambiguation)
 	except:
 		server.write("/disambiguations_"+language+".ttl.bz2\n")
-
+	
 	server.close()
 
 if __name__ == "__main__":
