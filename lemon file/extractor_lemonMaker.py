@@ -167,7 +167,7 @@ def main(argv):
     TTLFile = open(testTtl,"w") #-------------------------------------TESTS-----------------------
     TSVFile = open(testTsv,"w") #----------------------------------------TEST-------------------------------
     abbrevs = collections.OrderedDict()
-    output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\n")
+    output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\tCategory\n")
     TSVFile.write("Abbreviation\tDefinition\tReference Link\trdf:type\n")
     lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n\n")
     lemon.write('\n<http://nlp.dbpedia.org/abbrevbase/lexicon/'+language+'>\n a lemon:Lexicon ;\n\tlemon:language "'+language+'" ;\n')
@@ -199,15 +199,19 @@ def main(argv):
         TTLFile.write(' '.join(uris)) #write uri -------------------------------TEST--------------------------------------
         TTLFile.close()
         TTLFile = open(testTtl,"a")
-        if abbrev.endswith("...") or ":" in abbrev:
+        if abbrev.find('&nbsp')>0:
+                 abbrev=abbrev.replace('&nbsp'," ")
+        digits = len(re.findall('[0-9]', abbrev))
+        punc = len(re.findall('[\.*\?_%!,:\' ]', abbrev))
+        if abbrev.endswith("...") or ":" in abbrev or len(abbrev)-punc==digits:
             continue
         meaning = uris[2][uris[2].rfind("/")+1:-1]
         meaningURI = uris[2]
          
         if "_" not in abbrev and len(abbrev)>2:
-            print("----",abbrev)
-            if abbrev.find('&nbsp')>0:
-                    abbrev=abbrev.replace('&nbsp',"_")
+            #print("----",abbrev)
+            #if abbrev.find('&nbsp')>0:
+                    #abbrev=abbrev.replace('&nbsp',"_")
             count+=1
             value = [uris[0][1:-1],meaning.replace("_"," "),meaningURI[1:-1]]
             #if "disambiguation" in meaning:
