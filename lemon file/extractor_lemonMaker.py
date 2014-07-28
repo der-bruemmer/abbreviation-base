@@ -20,31 +20,30 @@ global language
 
 
 def getDisambiguations(abbrev, uri):
-    #print("Disam ",uri)
-    #s=input()
     global language
+    #SPARQL query to extract disambiguates
     query = "select distinct ?o, (str(?name) AS ?label), ?name where {"+uri+" <http://dbpedia.org/ontology/wikiPageDisambiguates> ?o. ?o <http://www.w3.org/2000/01/rdf-schema#label> ?name.FILTER(langMatches(lang(?name), \""+language.upper()+"\")) }"
-    """if language!='en':
-        endpoint = "http://"+language+".dbpedia.org/sparql"
-    else:
-        endpoint ="http://dbpedia.org/sparql"""
-    #sparql = SPARQLWrapper(endpoint)
+    
+    #local endpoint
     sparql = SPARQLWrapper("http://localhost:8890/sparql")
     sparql.setQuery(query)
-    sparql.setReturnFormat(JSON)
+    #query will return results in JSON format
+    sparql.setReturnFormat(JSON) 
     try:
         results = sparql.query().convert()
-        abbrevs = collections.OrderedDict()
+        abbrevs = collections.OrderedDict() #dictionary to store abbreviation and its corresponding information
         count=1
-        #count_AA=1
         for result in results["results"]["bindings"]:
-            #fetch sameAs result for each disambiguation
+            # query to fetch sameAs result for each disambiguation
+            # we only need sameAs which contain "dbpedia" like <http://el.dbpedia.org/resource/Μ.Χ.>,<http://it.dbpedia.org/resource/Anno_Domini> for A.D.
             query_sameAs = 'select ?lang where {<'+result["o"]["value"]+'> owl:sameAs ?lang. filter(contains(STR(?lang),"dbpedia"))}' 
             sparql.setQuery(query_sameAs)
             sparql.setReturnFormat(JSON)
             results_sameAs = sparql.query().convert()
   
-            #fetch type for each disamb (but ignored for now)
+            # query to fetch type for each disambiguation
+            # we only need sameAs which contain "ontology" or "schema"
+            # like <http://dbpedia.org/ontology/Place>,<http://schema.org/Place> for A.D.
             query_type = 'select distinct ?type where {<'+result["o"]["value"]+'> rdf:type ?type. FILTER (contains(STR(?type), "ontology") || contains(STR(?type), "schema"))}' 
             sparql.setQuery(query_type)
             sparql.setReturnFormat(JSON)
@@ -57,17 +56,18 @@ def getDisambiguations(abbrev, uri):
 
             for result_type in results_type["results"]["bindings"]:
                 list_type.append(result_type["type"]["value"])      #store the query result in a list
-
+            
+            # query to fetch type for each disambiguation
             query_cat = 'select distinct ?cat where {<'+result["o"]["value"]+'>  <http://purl.org/dc/terms/subject> ?cat }'
             sparql.setQuery(query_cat)
             sparql.setReturnFormat(JSON)
             results_cat = sparql.query().convert()
             
-            list_cat=[]
+            list_cat=[] #stores category temporarily for each disambiguation
             for result_cat in results_cat["results"]["bindings"]:
                 list_cat.append(result_cat["cat"]["value"])
 
-            #dictionary where key is abbreviation+count and value is label, reference link and sameAs fetched from query
+            #dictionary where key is abbreviation + count of its disambiguation and value is label, reference link, sameAs and category fetched from query
             abbrevs[abbrev+" "+str(count)] = [result["label"]["value"],result["o"]["value"],list_sameAs,list_type,list_cat]
             count+=1
         return abbrevs
@@ -89,11 +89,6 @@ def getDisambiguations(abbrev, uri):
 def getOriginalLanguageData(abbrev, uri):
     global language
     query = "select distinct (str(?name) AS ?label), ?name, (str(?abstract) AS ?en_abstr) where {<"+uri+"> <http://www.w3.org/2000/01/rdf-schema#label> ?name.FILTER(langMatches(lang(?name), \""+language.upper()+"\")) }"
-    """if language!='en':
-        endpoint = "http://"+language+".dbpedia.org/sparql"
-    else:
-        endpoint =" http://dbpedia.org/sparql"""
-    #sparql = SPARQLWrapper(endpoint)
     sparql = SPARQLWrapper("http://localhost:8890/sparql")
     sparql.setQuery(query)
     sparql.setReturnFormat(JSON)
@@ -101,7 +96,6 @@ def getOriginalLanguageData(abbrev, uri):
         results = sparql.query().convert()
         data = []
         for result in results["results"]["bindings"]:
-            
             query_sameAs = 'select ?lang where {<'+uri+'> owl:sameAs ?lang. filter(regex(?lang,"dbpedia"))}'   #fetch sameAs result for each abbreviation
             sparql.setQuery(query_sameAs)
             sparql.setReturnFormat(JSON)
@@ -109,7 +103,7 @@ def getOriginalLanguageData(abbrev, uri):
             list_sameAs=[]
             for result_sameAs in results_sameAs["results"]["bindings"]:
                 list_sameAs.append(result_sameAs["lang"]["value"])      #store the query result in a list
-            
+
             query_type = 'select distinct ?type where {<'+uri+'> rdf:type ?type. FILTER (REGEX(?type, "ontology") || REGEX(?type, "schema"))}' 
             sparql.setQuery(query_type)
             sparql.setReturnFormat(JSON)
@@ -136,11 +130,11 @@ def getOriginalLanguageData(abbrev, uri):
         return data
 
 def urlFormat(array):
+    #function to append '<' and '>' in the beginning and end of URIs
     array_to_string = ""
     for i in range(len(array)):
         if i!=len(array)-1:
             array_to_string += "<"+array[i]+">,"
-            #print array[i],"\na2s\n",array_to_string
             continue;
         array_to_string += "<"+array[i]+"> "
     return array_to_string
@@ -149,19 +143,26 @@ def urlFormat(array):
 def main(argv):
     global language
     language = argv[0]
-    #in_directory = './DBpedia/'
-    #out_directory = './'+language
-    in_directory = '/home/akswadmin/dbpedia_files/'
-    out_directory = '/home/akswadmin/'+language
+    in_directory = '/home/akswadmin/dbpedia_files/'	#directory which contains the redirects file
+    out_directory = '/home/akswadmin/'+language		#output directory for lemon file	
+    
     if not os.path.exists(out_directory):
         os.makedirs(out_directory)
     
-    infile = in_directory+language+'/data/redirects_'+language+'.ttl'  #location of input file
-    outfile = out_directory+'/abbreviation_tsv_'+language+'.txt'  #output file
-    lemon_file = out_directory+'/abbreviation_lemon_'+language+'.ttl'  #lemon file
-    testTtl = out_directory+"/test.ttl" #test file
-    testTsv = out_directory+"/abbreviation_tsv_"+language+'_IBM.txt' #test file for tsv
+    infile = in_directory+language+'/data/redirects_'+language+'.ttl'		#location of input file
+    outfile = out_directory+'/abbreviation_tsv_'+language+'.txt'		#output file
+    lemon_file = out_directory+'/abbreviation_lemon_'+language+'.ttl'		#lemon file
+    testTsv = out_directory+"/abbreviation_tsv_"+language+'_IBM.txt' 		#tsv for IBM
     input_file = open(infile,'r')
+<<<<<<< HEAD
+    output = open(outfile,'w')							#creates a tsv file
+    lemon = open(lemon_file,'w')						#creates lemon file
+    TSVFile = open(testTsv,"w")							#creates tsv file for IBM
+    abbrevs = collections.OrderedDict()						#dictionary which contains abbreviations and corresponding data retreived
+    output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\tcategory\n")	#writes column names in the tsv file
+    TSVFile.write("Abbreviation\tDefinition\tReference Link\trdf:type\n")	#writes column names in the tsv file for IBM
+    lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n\n")	#writes namespaces to the lemon files
+=======
     output = open(outfile,'w')
     lemon = open(lemon_file,'w')
     TTLFile = open(testTtl,"w") #-------------------------------------TESTS-----------------------
@@ -170,20 +171,33 @@ def main(argv):
     output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\tCategory\n")
     TSVFile.write("Abbreviation\tDefinition\tReference Link\trdf:type\n")
     lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n\n")
+>>>>>>> e733af4c58a9768a024cad60be1c01c8f8ba73d9
     lemon.write('\n<http://nlp.dbpedia.org/abbrevbase/lexicon/'+language+'>\n a lemon:Lexicon ;\n\tlemon:language "'+language+'" ;\n')
     count = 0
     count_line=0
     flag=0
     for line in input_file:
-        #if line.find("A._A."):
-            #print(count_line,line)
-            #break
-        #else:
-            #continue
-            #count_line+=1
-        if "%3F" in line:
+        #decode if url encoding is present in URI
+        if "%" in line:
             line = urllib.parse.unquote(line)
         count_line+=1
+<<<<<<< HEAD
+        uris = line.split(" ")					#splits the triple and stores is as list
+        abbrev = uris[0][uris[0].rfind("resource/")+9:-1]	#stores abbreviation
+        #if count_line%1000 == 0:
+            #print(count_line,": ",uris)
+        
+        # replace &nbsp with ' '
+        if abbrev.find('&nbsp')>0:
+            abbrev=abbrev.replace('&nbsp'," ")
+ 
+        digits = len(re.findall('[0-9]', abbrev))		#finds the length of digits in abbreviation
+        punc = len(re.findall('[\.*\?_%!,:\' ]', abbrev))	#find the length of punctuation in abbreviation
+        
+        # if abbreviation ends with '...' or contains ':' or contains only digits i.e. length(abbreviations)-length(punctuation) = length(digits)
+        # then do not store it and continue 
+        if abbrev.endswith("...") or ":" in abbrev or len(abbrev)-punc==digits:	  
+=======
         #pos1=line.find('<http://')
         #pos2=line.find('dbpedia',pos1)
         #line=line[0:pos1+8]+line[pos2+1:]
@@ -204,62 +218,68 @@ def main(argv):
         digits = len(re.findall('[0-9]', abbrev))
         punc = len(re.findall('[\.*\?_%!,:\' ]', abbrev))
         if abbrev.endswith("...") or ":" in abbrev or len(abbrev)-punc==digits:
+>>>>>>> e733af4c58a9768a024cad60be1c01c8f8ba73d9
             continue
-        meaning = uris[2][uris[2].rfind("/")+1:-1]
-        meaningURI = uris[2]
-         
+
+        meaning = uris[2][uris[2].rfind("/")+1:-1]		#stores meaning of abbreviation
+        meaningURI = uris[2]					#stores the URI which contains the meaning of abbreviation
+        
+        # if abbreviation contains '_' or abbreviation contains less than 2 characters then do not store it and continue  
         if "_" not in abbrev and len(abbrev)>2:
+<<<<<<< HEAD
+=======
             #print("----",abbrev)
             #if abbrev.find('&nbsp')>0:
                     #abbrev=abbrev.replace('&nbsp',"_")
+>>>>>>> e733af4c58a9768a024cad60be1c01c8f8ba73d9
             count+=1
+            #value is a list containing abbreviation URI, meaning and meaning URI
             value = [uris[0][1:-1],meaning.replace("_"," "),meaningURI[1:-1]]
-            #if "disambiguation" in meaning:
-            #print("getDisamb",abbrev,"------>",uris[2])
+            
+            #calls the functions getDisambiguations which returns a dictionary with all the necessary information
             values = getDisambiguations(abbrev, uris[2])
-            #___print("values ",values)
-            #if abbrev=="A.A.S.R.":
-                #print(values,"----",len(values))
 
+            #if functions returns values then insert abbreviation URI to first position
             if len(values) > 0:
                 for k,v in values.items():
                     abbrevs[k] = v
                     abbrevs[k].insert(0,uris[0][1:-1])
-                    #print(k,"\t-----disamb-----",abbrevs[k])
                 continue
 
             else:
+                #if abbreviation is not in the dictionary(i.e. getdisambiguation returns no value) then this condition is reached
                 if abbrev not in abbrevs:
-                    #print ("----> ",uris[2])
-                    #s1=input("enter")
                     data = getOriginalLanguageData(abbrev, uris[2][1:-1])
-                    #if abbrev=="A.A.S.R.":
-                        #print("----------data-----------",data,"\nlen",len(data))
                     if len(data) > 0:
                         abbrevs[abbrev] = data
                         abbrevs[abbrev].insert(0,uris[0][1:-1])		#inserts the original link in the dictionary at pos 0
-                        #print(abbrev,"\t----no disamb-----",abbrevs[abbrev])
                     else:
+                        #controls comes here if getdisambiguation returns no value and also the abbreviations is not already present in dictionary
+                        #i.e. just to write abbreviation and its meaning for the abbreviations that can not be extracted
                         abbrevs[abbrev]= value
                         
                 else:
                     print("already in " + abbrev +" " + uris[0])
                     abbrevs[abbrev][0] = abbrevs[abbrev][0] + " | " + meaning
     entry_var=""
-    check_abbr = [] #list to check for occurrences of disambiguations when writing lemon:entry :*_Entry .
-    #------this loop will make entry string of form lemon:entry :AA_Entry , BC_Entry .--------
+    check_abbr = [] #list to check for occurrences of disambiguations when writing lemon:entry.
+    
+    #this loop will make entry string of form lemon:entry.
     for k,v in abbrevs.items():
         temp=k.split(" ")[0] #fetches the abbreviation term
+        
         if temp in check_abbr:
                 continue
         check_abbr.append(temp)
-        temp="<http://nlp.dbpedia.org/abbrevbase/lexicon/en/entry/"+temp+">"
+        
+        temp="<http://nlp.dbpedia.org/abbrevbase/lexicon/en/entry/"+temp+">"	#makes entry URIs like <http://nlp.dbpedia.org/abbrevbase/lexicon/en/entry/A.D.>
         entry_var += temp + ", "
     entry_var = "lemon:entry " + entry_var[:-2] + " .\n\n"
     lemon.write("\t"+entry_var)
 
     for k,v in abbrevs.items():
         abbrevString = k.split(" ")[0]  #stores abbreviation in abbrevString
+        #loop and conditions to write the form, entry and sense(like sense1, sense2 etc) for each abbreviation and its disambiguations
         if k[-1]=='.' or k[-1]=='?' or k[-1]=='!' or k.split(" ")[1]=='1':
                 URI = "<http://nlp.dbpedia.org/abbrevbase/lexicon/"+language+"/entry/"
                 string_to_write = URI+abbrevString+">\n\tlemon:form "+URI+abbrevString+"#form> ;\n\tlemon:sense "
@@ -273,46 +293,46 @@ def main(argv):
                 lemon.close()
                 lemon = open(lemon_file,"a")
         
+        #converts sameAs from list to string format
         try:
                 if len(v[3])>0:
                         sameAs_string = urlFormat(v[3])
                 else:
                         sameAs_string = ""
         except IndexError:
-           	sameAs_string = ""	#converts sameAs from list to string forma
+           	sameAs_string = ""
+
+        #converts rdfType from list to string format	
         try:
                 if len(v[4])>0:
                         rdfType_string = urlFormat(v[4])
                 else:
-                        rdfType_string = ""  #converts rdfType from list to string format
+                        rdfType_string = ""  
         except IndexError:
                 rdfType_string = ""
+
+        #converts category from list to string format
         try:
                 if len(v[5])>0:
-                        cat_string = urlFormat(v[5])  #converts category from list to string format
+                        cat_string = urlFormat(v[5])  
                 else:
                         cat_string = ""
         except IndexError:
                 cat_string = ""
+        
         v2= "<"+v[2]+">"
+        #change reference links to wikipedia links
         v2_wiki = "<http://"+language+".wikipedia.org/wiki/"+ v2[v2.rfind("resource/")+9:]
-        #print(len(sameAs_string),"\t",len(rdfType_string),"\t",len(cat_string))
-        #s=input()
-        if "%3F" in sameAs_string:
+        
+        #URI decode
+        if "%" in sameAs_string:
             sameAs_string = urllib.parse.unquote(sameAs_string)
-        if "%3F" in rdfType_string:
+        if "%" in rdfType_string:
             rdfType_string = urllib.parse.unquote(rdfType_string)
-        if "%3F" in cat_string:
+        if "%" in cat_string:
             cat_string = urllib.parse.unquote(cat_string)
-        #print(len(sameAs_string),"\t",len(rdfType_string),"\t",len(cat_string))
-        #s=input()
 
-        """tsv = abbrevString+"\t"+v[1]+"\t"+v2_wiki+"\t"+rdfType_string"\n"
-        TSVFile.write(tsv)
-        TSVFile.close()
-        TSVFile = open(testTsv,"a")"""
         try:
-                #print("in try")
                 tsv = abbrevString+"\t"+v[1]+"\t"+v2_wiki+"\t"+rdfType_string+"\n"
                 TSVFile.write(tsv)
                 TSVFile.close()
@@ -320,18 +340,18 @@ def main(argv):
                 output.write(abbrevString+"\t"+v[1]+"\t"+'"'+v[1]+'"@'+language+"\t"+v2+"\t"+sameAs_string+"\t"+rdfType_string+"\t"+cat_string+"\n")
                 output.close()
                 output = open(outfile,"a")
-                #print(tsv,"\n")
+                
         except:
-
+                #exception handling
                 print(tsv,"\n")
                 print("v[1]: ",type(v[1]),"\nv[2]: ",type(v2),"\n",type(abbrevString),"\n",type(sameAs_string),"\n",type(rdfType_string),"\n",type(cat_string))
               
         if k[-1]!='.' and k[-1]!='?' and k[-1]!='!':
-                k1 = k.split(" ")[1]
+                k1 = k.split(" ")[1]	#sense number if disambiguation
         elif k[-1]=='.' or k[-1]=='?' or k[-1]=='!':
-                k1 = ""
-        #v[1]=str(v[1])
-        v[1]=v[1].replace('"',"'")
+                k1 = ""			#sense number is null if no disambiguation
+       
+        v[1]=v[1].replace('"',"'") #replace double quotes in string with single quotes
         definition = URI+abbrevString+"#sense"+k1+">\n\tlemon:definition [\n\t\tlemon:value "+'"'+v[1]+'"@'+language+"\n\t] ;\n\t" #def
         rdf_type = ""
         label = ""
@@ -345,6 +365,7 @@ def main(argv):
 
         if len(cat_string) > 0:
                 category = "dcterms:subject " + cat_string + " ;\n\t"		#Categories
+
         if len(sameAs_string) > 0:
                 owl_sameAs = "owl:sameAs " + sameAs_string + " ;\n\t"		#interlanguage links containing "dbpedia"
 
@@ -359,4 +380,3 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
-
