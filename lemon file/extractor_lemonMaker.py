@@ -154,6 +154,7 @@ def main(argv):
     lemon_file = out_directory+'/abbreviation_lemon_'+language+'.ttl'		#lemon file
     testTsv = out_directory+"/abbreviation_tsv_"+language+'_IBM.txt' 		#tsv for IBM
     input_file = open(infile,'r')
+<<<<<<< HEAD
     output = open(outfile,'w')							#creates a tsv file
     lemon = open(lemon_file,'w')						#creates lemon file
     TSVFile = open(testTsv,"w")							#creates tsv file for IBM
@@ -161,6 +162,16 @@ def main(argv):
     output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\tcategory\n")	#writes column names in the tsv file
     TSVFile.write("Abbreviation\tDefinition\tReference Link\trdf:type\n")	#writes column names in the tsv file for IBM
     lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n\n")	#writes namespaces to the lemon files
+=======
+    output = open(outfile,'w')
+    lemon = open(lemon_file,'w')
+    TTLFile = open(testTtl,"w") #-------------------------------------TESTS-----------------------
+    TSVFile = open(testTsv,"w") #----------------------------------------TEST-------------------------------
+    abbrevs = collections.OrderedDict()
+    output.write("Abbreviation\tDefinition\tLabel\tReference Link\towl:sameAS\trdf:type\tCategory\n")
+    TSVFile.write("Abbreviation\tDefinition\tReference Link\trdf:type\n")
+    lemon.write("@prefix :  <http://nlp.dbpedia.org/abbrevbase> .\n@prefix lemon: <http://lemon-model.net/lemon#> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .\n@prefix owl: <http://www.w3.org/2002/07/owl#> .\n@prefix dcterms: <http://purl.org/dc/terms/> .\n\n")
+>>>>>>> e733af4c58a9768a024cad60be1c01c8f8ba73d9
     lemon.write('\n<http://nlp.dbpedia.org/abbrevbase/lexicon/'+language+'>\n a lemon:Lexicon ;\n\tlemon:language "'+language+'" ;\n')
     count = 0
     count_line=0
@@ -170,6 +181,7 @@ def main(argv):
         if "%" in line:
             line = urllib.parse.unquote(line)
         count_line+=1
+<<<<<<< HEAD
         uris = line.split(" ")					#splits the triple and stores is as list
         abbrev = uris[0][uris[0].rfind("resource/")+9:-1]	#stores abbreviation
         #if count_line%1000 == 0:
@@ -185,6 +197,28 @@ def main(argv):
         # if abbreviation ends with '...' or contains ':' or contains only digits i.e. length(abbreviations)-length(punctuation) = length(digits)
         # then do not store it and continue 
         if abbrev.endswith("...") or ":" in abbrev or len(abbrev)-punc==digits:	  
+=======
+        #pos1=line.find('<http://')
+        #pos2=line.find('dbpedia',pos1)
+        #line=line[0:pos1+8]+line[pos2+1:]
+        #print(line)
+        #s=input()
+        uris = line.split(" ")
+        #pos1 = uris[2].find("<http://"+language)+8
+        #pos2 = uris[2].find("dbpedia",pos1)
+        #uris[2] = uris[2][0:pos1]+uris[2][pos2:]		#splits the triple and stores is as list
+        abbrev = uris[0][uris[0].rfind("resource/")+9:-1]    #stores abbreviation
+        if count_line%1000 == 0:
+            print(count_line,": ",uris)
+        TTLFile.write(' '.join(uris)) #write uri -------------------------------TEST--------------------------------------
+        TTLFile.close()
+        TTLFile = open(testTtl,"a")
+        if abbrev.find('&nbsp')>0:
+                 abbrev=abbrev.replace('&nbsp'," ")
+        digits = len(re.findall('[0-9]', abbrev))
+        punc = len(re.findall('[\.*\?_%!,:\' ]', abbrev))
+        if abbrev.endswith("...") or ":" in abbrev or len(abbrev)-punc==digits:
+>>>>>>> e733af4c58a9768a024cad60be1c01c8f8ba73d9
             continue
 
         meaning = uris[2][uris[2].rfind("/")+1:-1]		#stores meaning of abbreviation
@@ -192,6 +226,12 @@ def main(argv):
         
         # if abbreviation contains '_' or abbreviation contains less than 2 characters then do not store it and continue  
         if "_" not in abbrev and len(abbrev)>2:
+<<<<<<< HEAD
+=======
+            #print("----",abbrev)
+            #if abbrev.find('&nbsp')>0:
+                    #abbrev=abbrev.replace('&nbsp',"_")
+>>>>>>> e733af4c58a9768a024cad60be1c01c8f8ba73d9
             count+=1
             #value is a list containing abbreviation URI, meaning and meaning URI
             value = [uris[0][1:-1],meaning.replace("_"," "),meaningURI[1:-1]]
