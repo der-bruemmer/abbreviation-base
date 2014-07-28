@@ -10,15 +10,18 @@ global language
 #this function downloads the files and shows the progress bar as per the file being downloaded
 def download_file(url,abbrevFile=0):
 	global language
-	file_name = url.split('/')[-1]
+	file_name = url.split('/')[-1]	#file_name is the file name of the downloaded file
 	u = urllib2.urlopen(url)
-	directory = '/home/akswadmin/dbpedia_files/'+language+'/'
+	directory = '/home/akswadmin/dbpedia_files/'+language+'/' #directory where files are to be downloaded
+	#If directory doesnot exists then make the directory        
 	if not os.path.exists(directory):
 		os.makedirs(directory)	
 	if os.path.isfile(directory+file_name):
 		print file_name," already exists"
-		decompress(directory,file_name,abbrevFile)
+		#decompress(directory,file_name,abbrevFile)
 	f = open(directory+file_name, 'wb')
+	
+	#display the downloading information	
 	meta = u.info()
 	file_size = int(meta.getheaders("Content-Length")[0])
 	print "Downloading: %s Bytes: %s" % (file_name, file_size)
@@ -36,8 +39,10 @@ def download_file(url,abbrevFile=0):
 	    status = status + chr(8)*(len(status)+1)
 	    print status,
 	f.close()
+
 	print file_name, "downloaded successfully..."
 	decompress(directory,file_name,abbrevFile)
+	
 	return file_name
 
 def decompress(location,file_name,abbrevFile):
@@ -60,13 +65,11 @@ def decompress(location,file_name,abbrevFile):
 
 	if abbrevFile:
 		for line in line_list :
-			obj=re.match(r'<http://.*dbpedia.org/resource/.*[\?!\.]> <.*> <.*>',line)
+			obj=re.match(r'<http://.*dbpedia.org/resource/.*[\?!\.]> <.*> <.*>',line) #regular expression to download abbreviations ending with .,! or ?
 			if obj:
-				#print "-------",line
 				temp.write(line)
 	else:
 		for line in line_list :
-			#print line
 			temp.write(line)
 	temp.close()
 
@@ -88,17 +91,19 @@ def main(argv):
 	category = root+language+"/article_categories_"+language+".ttl.bz2"
 	disambiguation = root+language+"/disambiguations_"+language+".ttl.bz2"
 	
-	server=open("file_not_available.txt","a")
-	#dwn=open("download_time.txt","w") #file to store time take by each file to download and decomress
+	server=open("file_not_available.txt","a") # a server report which stores the files that are not available for a language.
+	
 	server.write("------------ Language: "+language+"--------------------\n")
-	#downloaded 7 files namely:
+	#downloaded 8 files namely:
 	#1. redirects- contains abbreviations
 	#2. instance_types_heuristic
-	#3. interlanguage_links
-	#4. interlanguage_links_chapters
-	#5. labels
-	#6. article_categories
-	#7. disambiguations
+	#3. intsance_types
+	#4. interlanguage_links
+	#5. interlanguage_links_chapters
+	#6. labels
+	#7. article_categories
+	#8. disambiguations
+
 	try:
 		f=download_file(redirect,1)
 	except:
@@ -111,7 +116,6 @@ def main(argv):
                 f=download_file(instance2)
         except:
                 server.write("/instance_types_heuristic_"+language+".ttl.bz2\n")
-
 	try:
 		f=download_file(InterLang_Links)
 	except:
